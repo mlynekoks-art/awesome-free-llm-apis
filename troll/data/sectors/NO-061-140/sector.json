@@ -1,0 +1,208 @@
+{
+ "id": "NO-061-140",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 61,
+ "row": 140,
+ "bounds_epsg": 25833,
+ "bounds": [
+  124000,
+  6940000,
+  128000,
+  6944000
+ ],
+ "centre": [
+  126000.0,
+  6942000.0
+ ],
+ "longitude": 7.74852,
+ "latitude": 62.42011,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": 814.65,
+  "max_m": 1725.04,
+  "mean_m": 1286.93,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0,
+ "materials": {
+  "GRASS": 0.0421,
+  "GROUND": 0.6231,
+  "ROCK": 0.2092,
+  "SLATE": 0.0215,
+  "GLACIER": 0.0099,
+  "LAKE": 0.0942
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": "Slettflybottvatnet",
+   "vatnlnr": 1980,
+   "status": "OK",
+   "level_m": 1087.45,
+   "nve_height_m": 1087,
+   "cells_in_window": 5749,
+   "nve_polygon_cells_in_window": 5767
+  },
+  {
+   "name": "S\u00f8re Isglupen",
+   "vatnlnr": 31526,
+   "status": "OK",
+   "level_m": 1220.9,
+   "nve_height_m": 1220,
+   "cells_in_window": 505557,
+   "nve_polygon_cells_in_window": 508243
+  },
+  {
+   "name": "N\u00f8rdre Isglupen",
+   "vatnlnr": 31502,
+   "status": "OK",
+   "level_m": 1149.75,
+   "nve_height_m": 1149,
+   "cells_in_window": 373545,
+   "nve_polygon_cells_in_window": 373138
+  },
+  {
+   "name": null,
+   "vatnlnr": 31538,
+   "status": "OK",
+   "level_m": 1249.55,
+   "nve_height_m": 1249,
+   "cells_in_window": 154317,
+   "nve_polygon_cells_in_window": 154896
+  },
+  {
+   "name": null,
+   "vatnlnr": 139067,
+   "status": "REJECTED_NOT_FLAT",
+   "nve_height_m": 1240
+  },
+  {
+   "name": null,
+   "vatnlnr": 139063,
+   "status": "OK",
+   "level_m": 1166.4,
+   "nve_height_m": 1165,
+   "cells_in_window": 5017,
+   "nve_polygon_cells_in_window": 4531
+  },
+  {
+   "name": null,
+   "vatnlnr": 139080,
+   "status": "OK",
+   "level_m": 1224.55,
+   "nve_height_m": 1224,
+   "cells_in_window": 4830,
+   "nve_polygon_cells_in_window": 5166
+  },
+  {
+   "name": "Isglupane",
+   "vatnlnr": 31534,
+   "status": "OK",
+   "level_m": 1126.15,
+   "nve_height_m": 1126,
+   "cells_in_window": 282021,
+   "nve_polygon_cells_in_window": 280104
+  },
+  {
+   "name": "Isglupen",
+   "vatnlnr": 31523,
+   "status": "OK",
+   "level_m": 1163.85,
+   "nve_height_m": 1163,
+   "cells_in_window": 160677,
+   "nve_polygon_cells_in_window": 160550
+  },
+  {
+   "name": null,
+   "vatnlnr": 139083,
+   "status": "OK",
+   "level_m": 1239.0,
+   "nve_height_m": 1238,
+   "cells_in_window": 8044,
+   "nve_polygon_cells_in_window": 6765
+  },
+  {
+   "name": null,
+   "vatnlnr": 139082,
+   "status": "OK",
+   "level_m": 1242.15,
+   "nve_height_m": 1242,
+   "cells_in_window": 1937,
+   "nve_polygon_cells_in_window": 1778
+  },
+  {
+   "name": null,
+   "vatnlnr": 139056,
+   "status": "OK",
+   "level_m": 1037.75,
+   "nve_height_m": 1038,
+   "cells_in_window": 2467,
+   "nve_polygon_cells_in_window": 2545
+  },
+  {
+   "name": null,
+   "vatnlnr": 31535,
+   "status": "OK",
+   "level_m": 1246.3,
+   "nve_height_m": null,
+   "cells_in_window": 41058,
+   "nve_polygon_cells_in_window": 45753
+  }
+ ],
+ "lake_frac": 0.0942,
+ "glacier_frac": 0.0099,
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 19107390
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
+ ],
+ "validation": {
+  "sector": "NO-061-140",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 14493258,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": 814.6484375,
+    "max_m": 1725.0423583984375,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.025,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:43:54Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-061-140.project.json",
+  "place": "roblox/build/Troll_NO-061-140.rbxl"
+ }
+}
