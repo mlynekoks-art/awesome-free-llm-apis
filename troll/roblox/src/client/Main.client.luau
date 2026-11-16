@@ -1,0 +1,2 @@
+--!strict
+-- Client entry point (intentionally empty at Stage 0-1: no gameplay systems yet).

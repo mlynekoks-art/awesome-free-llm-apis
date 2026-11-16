@@ -1,0 +1,66 @@
+{
+  "chunks": [
+    {
+      "blocks": 100,
+      "chunk": "08_02",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.019586304999961612,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 297,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.5774574150000262,
+      "voxelsWritten": 7349375,
+      "waterColumnsWrong": 0
+    },
+    {
+      "blocks": 100,
+      "chunk": "00_00",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.017807419999940066,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 114,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.25509051599999566,
+      "voxelsWritten": 2557500,
+      "waterColumnsWrong": 0
+    },
+    {
+      "blocks": 100,
+      "chunk": "15_15",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.3092638912203256e-14,
+      "decodeSeconds": 0.013045890999933363,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 17,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.035162324999987504,
+      "voxelsWritten": 483125,
+      "waterColumnsWrong": 0
+    },
+    {
+      "blocks": 100,
+      "chunk": "07_03",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.018878161999964505,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 444,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.5271161699999993,
+      "voxelsWritten": 7886875,
+      "waterColumnsWrong": 0
+    }
+  ],
+  "result": "PASS",
+  "sector": "NO-061-142"
+}

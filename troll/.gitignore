@@ -1,0 +1,8 @@
+data/cache/
+data/sectors/*/dem_1m.tif
+data/sectors/*/*.npy
+roblox/build/
+__pycache__/
+*.pyc
+*.blend1
+data/overview/*.tif
