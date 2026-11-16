@@ -1,0 +1,129 @@
+{
+ "asset": "boulder_050",
+ "species": "boulder",
+ "seed": 7,
+ "params": {
+  "size": 0.5,
+  "subdiv": 6,
+  "gneiss": 0.0,
+  "moss": 0.25,
+  "lichen": 0.6,
+  "facets": 3,
+  "flat": 0.55
+ },
+ "blender": "4.2.3 LTS",
+ "lods": {
+  "0": {
+   "fbx": "boulder_050_LOD0.fbx",
+   "glb": "boulder_050_LOD0.glb",
+   "fbx_bytes": 124412,
+   "glb_bytes": 2641040,
+   "meshes": [
+    {
+     "object": "Boulder_050_LOD0",
+     "tris": 1500,
+     "verts": 752,
+     "render_verts": 1341,
+     "min": [
+      -0.262,
+      -0.202,
+      -0.016
+     ],
+     "max": [
+      0.217,
+      0.206,
+      0.248
+     ],
+     "material": "Boulder_050_rock"
+    }
+   ],
+   "tris": 1500,
+   "verts": 752,
+   "render_verts": 1341,
+   "texture_px": 1024,
+   "height_m": 0.25,
+   "buried_m": 0.02,
+   "width_x_m": 0.48,
+   "width_y_m": 0.41
+  },
+  "1": {
+   "fbx": "boulder_050_LOD1.fbx",
+   "glb": "boulder_050_LOD1.glb",
+   "fbx_bytes": 59980,
+   "glb_bytes": 851380,
+   "meshes": [
+    {
+     "object": "Boulder_050_LOD1",
+     "tris": 500,
+     "verts": 252,
+     "render_verts": 553,
+     "min": [
+      -0.262,
+      -0.203,
+      -0.015
+     ],
+     "max": [
+      0.217,
+      0.207,
+      0.25
+     ],
+     "material": "Boulder_050_rock_mobile"
+    }
+   ],
+   "tris": 500,
+   "verts": 252,
+   "render_verts": 553,
+   "texture_px": 512,
+   "height_m": 0.25,
+   "buried_m": 0.01,
+   "width_x_m": 0.48,
+   "width_y_m": 0.41
+  },
+  "2": {
+   "fbx": "boulder_050_LOD2.fbx",
+   "glb": "boulder_050_LOD2.glb",
+   "fbx_bytes": 35308,
+   "glb_bytes": 833004,
+   "meshes": [
+    {
+     "object": "Boulder_050_LOD2",
+     "tris": 150,
+     "verts": 77,
+     "render_verts": 220,
+     "min": [
+      -0.262,
+      -0.204,
+      -0.009
+     ],
+     "max": [
+      0.213,
+      0.207,
+      0.247
+     ],
+     "material": "Boulder_050_rock_mobile"
+    }
+   ],
+   "tris": 150,
+   "verts": 77,
+   "render_verts": 220,
+   "texture_px": 512,
+   "height_m": 0.25,
+   "buried_m": 0.01,
+   "width_x_m": 0.47,
+   "width_y_m": 0.41
+  }
+ },
+ "high_poly_tris": 20480,
+ "textures": {
+  "folder": "textures/boulder",
+  "mobile_folder": "textures/boulder/mobile",
+  "files": {
+   "albedo": "boulder_050_albedo.png",
+   "normal": "boulder_050_normal.png",
+   "rough": "boulder_050_rough.png"
+  }
+ },
+ "bake_seconds": 22.3,
+ "blend": "blender/blend/boulder_050.blend",
+ "build_seconds": 81.5
+}

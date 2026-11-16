@@ -1,0 +1,235 @@
+{
+ "id": "NO-060-140",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 60,
+ "row": 140,
+ "bounds_epsg": 25833,
+ "bounds": [
+  120000,
+  6940000,
+  124000,
+  6944000
+ ],
+ "centre": [
+  122000.0,
+  6942000.0
+ ],
+ "longitude": 7.67171,
+ "latitude": 62.41607,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": 704.21,
+  "max_m": 1397.68,
+  "mean_m": 964.99,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0,
+ "materials": {
+  "GRASS": 0.3613,
+  "LEAFY_GRASS": 0.1171,
+  "GROUND": 0.4027,
+  "ROCK": 0.0742,
+  "SLATE": 0.0115,
+  "LAKE": 0.0332
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 31506,
+   "status": "OK",
+   "level_m": 840.4,
+   "nve_height_m": null,
+   "cells_in_window": 21828,
+   "nve_polygon_cells_in_window": 20714
+  },
+  {
+   "name": null,
+   "vatnlnr": 31528,
+   "status": "OK",
+   "level_m": 715.15,
+   "nve_height_m": 714,
+   "cells_in_window": 80924,
+   "nve_polygon_cells_in_window": 91606
+  },
+  {
+   "name": null,
+   "vatnlnr": 139071,
+   "status": "OK",
+   "level_m": 1114.45,
+   "nve_height_m": null,
+   "cells_in_window": 3475,
+   "nve_polygon_cells_in_window": 2502
+  },
+  {
+   "name": null,
+   "vatnlnr": 265905,
+   "status": "OK",
+   "level_m": 1190.4,
+   "nve_height_m": 1190,
+   "cells_in_window": 3680,
+   "nve_polygon_cells_in_window": 3794
+  },
+  {
+   "name": null,
+   "vatnlnr": 139086,
+   "status": "OK",
+   "level_m": 815.0,
+   "nve_height_m": null,
+   "cells_in_window": 12211,
+   "nve_polygon_cells_in_window": 8539
+  },
+  {
+   "name": null,
+   "vatnlnr": 139078,
+   "status": "REJECTED_NOT_FLAT",
+   "nve_height_m": null
+  },
+  {
+   "name": null,
+   "vatnlnr": 139065,
+   "status": "OK",
+   "level_m": 753.05,
+   "nve_height_m": null,
+   "cells_in_window": 3409,
+   "nve_polygon_cells_in_window": 2891
+  },
+  {
+   "name": null,
+   "vatnlnr": 139061,
+   "status": "OK",
+   "level_m": 788.0,
+   "nve_height_m": null,
+   "cells_in_window": 11970,
+   "nve_polygon_cells_in_window": 10969
+  },
+  {
+   "name": null,
+   "vatnlnr": 265904,
+   "status": "OK",
+   "level_m": 1259.8,
+   "nve_height_m": 1258,
+   "cells_in_window": 3638,
+   "nve_polygon_cells_in_window": 3235
+  },
+  {
+   "name": null,
+   "vatnlnr": 139053,
+   "status": "OK",
+   "level_m": 879.5,
+   "nve_height_m": null,
+   "cells_in_window": 572,
+   "nve_polygon_cells_in_window": 93
+  },
+  {
+   "name": null,
+   "vatnlnr": 139055,
+   "status": "OK",
+   "level_m": 777.05,
+   "nve_height_m": null,
+   "cells_in_window": 2983,
+   "nve_polygon_cells_in_window": 2576
+  },
+  {
+   "name": null,
+   "vatnlnr": 273346,
+   "status": "OK",
+   "level_m": 811.7,
+   "nve_height_m": 809,
+   "cells_in_window": 2637,
+   "nve_polygon_cells_in_window": 2508
+  },
+  {
+   "name": null,
+   "vatnlnr": 139057,
+   "status": "OK",
+   "level_m": 790.8,
+   "nve_height_m": null,
+   "cells_in_window": 15591,
+   "nve_polygon_cells_in_window": 14444
+  },
+  {
+   "name": "Slufsekoppen",
+   "vatnlnr": 31553,
+   "status": "OK",
+   "level_m": 1054.7,
+   "nve_height_m": 1054,
+   "cells_in_window": 162291,
+   "nve_polygon_cells_in_window": 163045
+  },
+  {
+   "name": "Isglupane",
+   "vatnlnr": 31534,
+   "status": "OK",
+   "level_m": 1126.15,
+   "nve_height_m": 1126,
+   "cells_in_window": 53835,
+   "nve_polygon_cells_in_window": 51180
+  },
+  {
+   "name": "Isglupen",
+   "vatnlnr": 31523,
+   "status": "OK",
+   "level_m": 1163.85,
+   "nve_height_m": 1163,
+   "cells_in_window": 183759,
+   "nve_polygon_cells_in_window": 185166
+  }
+ ],
+ "lake_frac": 0.0332,
+ "glacier_frac": 0.0,
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 18593987
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
+ ],
+ "validation": {
+  "sector": "NO-060-140",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 15468898,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": 704.2055053710938,
+    "max_m": 1397.679931640625,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.0246,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:47:39Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-060-140.project.json",
+  "place": "roblox/build/Troll_NO-060-140.rbxl"
+ }
+}

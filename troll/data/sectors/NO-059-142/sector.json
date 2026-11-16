@@ -1,0 +1,114 @@
+{
+ "id": "NO-059-142",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 59,
+ "row": 142,
+ "bounds_epsg": 25833,
+ "bounds": [
+  116000,
+  6948000,
+  120000,
+  6952000
+ ],
+ "centre": [
+  118000.0,
+  6950000.0
+ ],
+ "longitude": 7.5772,
+ "latitude": 62.4832,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": -0.17,
+  "max_m": 1461.89,
+  "mean_m": 425.66,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0187,
+ "materials": {
+  "GRASS": 0.0411,
+  "LEAFY_GRASS": 0.5443,
+  "GROUND": 0.2598,
+  "ROCK": 0.1012,
+  "SLATE": 0.0239,
+  "SAND": 0.0009,
+  "SEA": 0.0187,
+  "LAKE": 0.01
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": "Haugabotsvatnet",
+   "vatnlnr": 31428,
+   "status": "OK",
+   "level_m": 678.95,
+   "nve_height_m": 680,
+   "cells_in_window": 155639,
+   "nve_polygon_cells_in_window": 155020
+  },
+  {
+   "name": "Haugabotn",
+   "vatnlnr": 138992,
+   "status": "OK",
+   "level_m": 677.55,
+   "nve_height_m": null,
+   "cells_in_window": 4156,
+   "nve_polygon_cells_in_window": 2909
+  }
+ ],
+ "lake_frac": 0.01,
+ "glacier_frac": 0.0,
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 19576995
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
+ ],
+ "validation": {
+  "sector": "NO-059-142",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 15540802,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": -0.17043285071849823,
+    "max_m": 1461.8883056640625,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.0249,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:44:50Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-059-142.project.json",
+  "place": "roblox/build/Troll_NO-059-142.rbxl"
+ }
+}

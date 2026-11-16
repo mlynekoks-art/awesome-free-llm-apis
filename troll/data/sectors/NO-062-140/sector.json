@@ -1,0 +1,212 @@
+{
+ "id": "NO-062-140",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 62,
+ "row": 140,
+ "bounds_epsg": 25833,
+ "bounds": [
+  128000,
+  6940000,
+  132000,
+  6944000
+ ],
+ "centre": [
+  130000.0,
+  6942000.0
+ ],
+ "longitude": 7.82535,
+ "latitude": 62.4241,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": 58.79,
+  "max_m": 1692.69,
+  "mean_m": 991.1,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0,
+ "materials": {
+  "GRASS": 0.0629,
+  "LEAFY_GRASS": 0.1275,
+  "GROUND": 0.5014,
+  "ROCK": 0.2358,
+  "SLATE": 0.0396,
+  "GLACIER": 0.0095,
+  "LAKE": 0.0233
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": "\u00d8lmevatna",
+   "vatnlnr": 31513,
+   "status": "OK",
+   "level_m": 939.65,
+   "nve_height_m": 939,
+   "cells_in_window": 44545,
+   "nve_polygon_cells_in_window": 42925
+  },
+  {
+   "name": "Slettflybottvatnet",
+   "vatnlnr": 1980,
+   "status": "OK",
+   "level_m": 1087.45,
+   "nve_height_m": 1087,
+   "cells_in_window": 158158,
+   "nve_polygon_cells_in_window": 157965
+  },
+  {
+   "name": "\u00d8lmevatna",
+   "vatnlnr": 31508,
+   "status": "OK",
+   "level_m": 939.05,
+   "nve_height_m": 939,
+   "cells_in_window": 43629,
+   "nve_polygon_cells_in_window": 42032
+  },
+  {
+   "name": null,
+   "vatnlnr": 31545,
+   "status": "OK",
+   "level_m": 1389.85,
+   "nve_height_m": 1389,
+   "cells_in_window": 50532,
+   "nve_polygon_cells_in_window": 51828
+  },
+  {
+   "name": "\u00d8lmavatna",
+   "vatnlnr": 31524,
+   "status": "OK",
+   "level_m": 1145.4,
+   "nve_height_m": 1145,
+   "cells_in_window": 64384,
+   "nve_polygon_cells_in_window": 64875
+  },
+  {
+   "name": null,
+   "vatnlnr": 139091,
+   "status": "OK",
+   "level_m": 1017.1,
+   "nve_height_m": 1017,
+   "cells_in_window": 67,
+   "nve_polygon_cells_in_window": 11
+  },
+  {
+   "name": null,
+   "vatnlnr": 139090,
+   "status": "OK",
+   "level_m": 1019.25,
+   "nve_height_m": 1018,
+   "cells_in_window": 2947,
+   "nve_polygon_cells_in_window": 2217
+  },
+  {
+   "name": null,
+   "vatnlnr": 139081,
+   "status": "OK",
+   "level_m": 1049.25,
+   "nve_height_m": 1049,
+   "cells_in_window": 11975,
+   "nve_polygon_cells_in_window": 11352
+  },
+  {
+   "name": null,
+   "vatnlnr": 295623,
+   "status": "OK",
+   "level_m": 941.65,
+   "nve_height_m": 942,
+   "cells_in_window": 4524,
+   "nve_polygon_cells_in_window": 4277
+  },
+  {
+   "name": null,
+   "vatnlnr": 139058,
+   "status": "OK",
+   "level_m": 942.45,
+   "nve_height_m": 942,
+   "cells_in_window": 6617,
+   "nve_polygon_cells_in_window": 5873
+  },
+  {
+   "name": null,
+   "vatnlnr": 139056,
+   "status": "OK",
+   "level_m": 1037.75,
+   "nve_height_m": 1038,
+   "cells_in_window": 4354,
+   "nve_polygon_cells_in_window": 4353
+  },
+  {
+   "name": null,
+   "vatnlnr": 139084,
+   "status": "OK",
+   "level_m": 1036.75,
+   "nve_height_m": 1036,
+   "cells_in_window": 2649,
+   "nve_polygon_cells_in_window": 2436
+  },
+  {
+   "name": null,
+   "vatnlnr": 139087,
+   "status": "OK",
+   "level_m": 1042.85,
+   "nve_height_m": 1043,
+   "cells_in_window": 18743,
+   "nve_polygon_cells_in_window": 17847
+  }
+ ],
+ "lake_frac": 0.0233,
+ "glacier_frac": 0.0095,
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 19287896
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
+ ],
+ "validation": {
+  "sector": "NO-062-140",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 15627631,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": 58.7934455871582,
+    "max_m": 1692.69140625,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.025,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:49:18Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-062-140.project.json",
+  "place": "roblox/build/Troll_NO-062-140.rbxl"
+ }
+}

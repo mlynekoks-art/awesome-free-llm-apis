@@ -6,7 +6,7 @@
   "height": 20.0,
   "dbh": 0.42,
   "crown_frac": 0.38,
-  "width_ratio": 0.2,
+  "width_ratio": 0.27,
   "forks": 3,
   "lean": 0.03
  },
@@ -15,8 +15,8 @@
   "0": {
    "fbx": "pine_a_LOD0.fbx",
    "glb": "pine_a_LOD0.glb",
-   "fbx_bytes": 889868,
-   "glb_bytes": 6618328,
+   "fbx_bytes": 995180,
+   "glb_bytes": 6686348,
    "meshes": [
     {
      "object": "Pine_A_LOD0_Bark",
@@ -24,50 +24,50 @@
      "verts": 2131,
      "render_verts": 2131,
      "min": [
-      -2.787,
-      -2.657,
+      -3.733,
+      -3.858,
       -0.02
      ],
      "max": [
-      3.509,
-      2.98,
-      20.231
+      4.751,
+      3.945,
+      20.444
      ],
      "material": "pine_bark"
     },
     {
      "object": "Pine_A_LOD0_Foliage",
-     "tris": 5184,
-     "verts": 7776,
-     "render_verts": 7776,
+     "tris": 6056,
+     "verts": 9084,
+     "render_verts": 9084,
      "min": [
-      -3.419,
-      -3.52,
-      12.11
+      -4.373,
+      -4.333,
+      11.975
      ],
      "max": [
-      4.254,
-      3.85,
-      20.782
+      5.408,
+      4.732,
+      21.071
      ],
      "material": "pine_foliage"
     }
    ],
-   "tris": 8082,
-   "verts": 9907,
-   "render_verts": 9907,
-   "cards_total": 1296,
-   "cards_kept": 1296,
+   "tris": 8954,
+   "verts": 11215,
+   "render_verts": 11215,
+   "cards_total": 1514,
+   "cards_kept": 1514,
    "card_scale": 1.0,
    "texture_px": 1024,
-   "height_m": 20.8,
-   "width_x_m": 7.67,
-   "width_y_m": 7.37
+   "height_m": 21.09,
+   "width_x_m": 9.78,
+   "width_y_m": 9.07
   },
   "1": {
    "fbx": "pine_a_LOD1.fbx",
    "glb": "pine_a_LOD1.glb",
-   "fbx_bytes": 361292,
+   "fbx_bytes": 361372,
    "glb_bytes": 1969384,
    "meshes": [
     {
@@ -76,13 +76,13 @@
      "verts": 420,
      "render_verts": 420,
      "min": [
-      -2.632,
-      -2.654,
+      -3.436,
+      -3.855,
       -0.02
      ],
      "max": [
-      3.508,
-      2.915,
+      4.534,
+      3.935,
       20.121
      ],
      "material": "pine_bark_mobile"
@@ -93,14 +93,14 @@
      "verts": 3960,
      "render_verts": 3960,
      "min": [
-      -3.594,
-      -3.696,
-      12.093
+      -4.622,
+      -4.619,
+      11.946
      ],
      "max": [
-      4.385,
-      4.024,
-      20.716
+      5.648,
+      4.986,
+      21.017
      ],
      "material": "pine_foliage_mobile"
     }
@@ -108,18 +108,18 @@
    "tris": 2500,
    "verts": 4380,
    "render_verts": 4380,
-   "cards_total": 1296,
+   "cards_total": 1514,
    "cards_kept": 990,
-   "card_scale": 1.144,
+   "card_scale": 1.237,
    "texture_px": 512,
-   "height_m": 20.74,
-   "width_x_m": 7.98,
-   "width_y_m": 7.72
+   "height_m": 21.04,
+   "width_x_m": 10.27,
+   "width_y_m": 9.61
   },
   "2": {
    "fbx": "pine_a_LOD2.fbx",
    "glb": "pine_a_LOD2.glb",
-   "fbx_bytes": 90172,
+   "fbx_bytes": 90188,
    "glb_bytes": 1791376,
    "meshes": [
     {
@@ -145,14 +145,14 @@
      "verts": 872,
      "render_verts": 872,
      "min": [
-      -4.991,
-      -4.903,
-      11.945
+      -5.705,
+      -6.067,
+      11.655
      ],
      "max": [
-      5.301,
-      5.158,
-      20.612
+      6.486,
+      6.142,
+      20.942
      ],
      "material": "pine_foliage_mobile"
     }
@@ -160,19 +160,19 @@
    "tris": 500,
    "verts": 922,
    "render_verts": 922,
-   "cards_total": 1296,
+   "cards_total": 1514,
    "cards_kept": 218,
-   "card_scale": 2.438,
+   "card_scale": 2.6,
    "texture_px": 512,
-   "height_m": 20.63,
-   "width_x_m": 10.29,
-   "width_y_m": 10.06
+   "height_m": 20.96,
+   "width_x_m": 12.19,
+   "width_y_m": 12.21
   },
   "2_billboard": {
    "fbx": "pine_a_LOD2_billboard.fbx",
    "glb": "pine_a_LOD2_billboard.glb",
    "fbx_bytes": 21676,
-   "glb_bytes": 273788,
+   "glb_bytes": 294832,
    "meshes": [
     {
      "object": "Pine_A_LOD2_Billboard",
@@ -180,14 +180,14 @@
      "verts": 8,
      "render_verts": 8,
      "min": [
-      -5.405,
-      -5.405,
-      -0.324
+      -5.737,
+      -5.737,
+      -0.344
      ],
      "max": [
-      5.405,
-      5.405,
-      21.295
+      5.737,
+      5.737,
+      22.604
      ],
      "material": "Pine_A_billboard"
     }
@@ -201,9 +201,9 @@
     "normal": "pine_a_impostor_normal.png",
     "rough": "pine_a_impostor_rough.png"
    },
-   "height_m": 21.62,
-   "width_x_m": 10.81,
-   "width_y_m": 10.81
+   "height_m": 22.95,
+   "width_x_m": 11.47,
+   "width_y_m": 11.47
   }
  },
  "info": {
@@ -212,8 +212,8 @@
   "crown_base": 12.4,
   "fork_height": 17.13,
   "bark_transition": 9.94,
-  "crown_radius_max": 4.0,
-  "cards": 1296,
+  "crown_radius_max": 5.4,
+  "cards": 1514,
   "tubes": 99,
   "bark_frac": {
    "0": 0.36,
@@ -225,7 +225,7 @@
   "folder": "textures/pine",
   "mobile_folder": "textures/pine/mobile"
  },
- "render_seconds": 24.7,
+ "render_seconds": 32.1,
  "blend": "blender/blend/pine_a.blend",
- "build_seconds": 106.0
+ "build_seconds": 93.2
 }

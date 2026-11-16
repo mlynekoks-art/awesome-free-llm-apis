@@ -1,0 +1,194 @@
+{
+ "id": "NO-063-142",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 63,
+ "row": 142,
+ "bounds_epsg": 25833,
+ "bounds": [
+  132000,
+  6948000,
+  136000,
+  6952000
+ ],
+ "centre": [
+  134000.0,
+  6950000.0
+ ],
+ "longitude": 7.88519,
+ "latitude": 62.49931,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": 435.7,
+  "max_m": 1750.77,
+  "mean_m": 1090.94,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0,
+ "materials": {
+  "GRASS": 0.0535,
+  "LEAFY_GRASS": 0.0913,
+  "GROUND": 0.5147,
+  "ROCK": 0.1814,
+  "SLATE": 0.0485,
+  "GLACIER": 0.0448,
+  "LAKE": 0.0658
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 141217,
+   "status": "OK",
+   "level_m": 1093.2,
+   "nve_height_m": 1093,
+   "cells_in_window": 2651,
+   "nve_polygon_cells_in_window": 3910
+  },
+  {
+   "name": null,
+   "vatnlnr": 141215,
+   "status": "OK",
+   "level_m": 1105.6,
+   "nve_height_m": 1106,
+   "cells_in_window": 7563,
+   "nve_polygon_cells_in_window": 7374
+  },
+  {
+   "name": null,
+   "vatnlnr": 141218,
+   "status": "OK",
+   "level_m": 1033.75,
+   "nve_height_m": 1033,
+   "cells_in_window": 4013,
+   "nve_polygon_cells_in_window": 3795
+  },
+  {
+   "name": null,
+   "vatnlnr": 141216,
+   "status": "OK",
+   "level_m": 1104.2,
+   "nve_height_m": 1105,
+   "cells_in_window": 2204,
+   "nve_polygon_cells_in_window": 2586
+  },
+  {
+   "name": null,
+   "vatnlnr": 31415,
+   "status": "OK",
+   "level_m": 1008.6,
+   "nve_height_m": 1006,
+   "cells_in_window": 21988,
+   "nve_polygon_cells_in_window": 21058
+  },
+  {
+   "name": null,
+   "vatnlnr": 31407,
+   "status": "OK",
+   "level_m": 999.6,
+   "nve_height_m": 997,
+   "cells_in_window": 11703,
+   "nve_polygon_cells_in_window": 10418
+  },
+  {
+   "name": null,
+   "vatnlnr": 141214,
+   "status": "OK",
+   "level_m": 1160.9,
+   "nve_height_m": 1162,
+   "cells_in_window": 10581,
+   "nve_polygon_cells_in_window": 10884
+  },
+  {
+   "name": null,
+   "vatnlnr": 31405,
+   "status": "OK",
+   "level_m": 1011.15,
+   "nve_height_m": 1009,
+   "cells_in_window": 17284,
+   "nve_polygon_cells_in_window": 17069
+  },
+  {
+   "name": null,
+   "vatnlnr": 31432,
+   "status": "OK",
+   "level_m": 1039.8,
+   "nve_height_m": 1039,
+   "cells_in_window": 52905,
+   "nve_polygon_cells_in_window": 67929
+  },
+  {
+   "name": "Svartevatnet",
+   "vatnlnr": 31426,
+   "status": "OK",
+   "level_m": 1079.75,
+   "nve_height_m": 1079,
+   "cells_in_window": 402286,
+   "nve_polygon_cells_in_window": 403029
+  },
+  {
+   "name": "Middagsfjellvatnet",
+   "vatnlnr": 31416,
+   "status": "OK",
+   "level_m": 929.65,
+   "nve_height_m": 929,
+   "cells_in_window": 569456,
+   "nve_polygon_cells_in_window": 566977
+  }
+ ],
+ "lake_frac": 0.0658,
+ "glacier_frac": 0.0448,
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 19826566
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
+ ],
+ "validation": {
+  "sector": "NO-063-142",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 14946554,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": 435.702392578125,
+    "max_m": 1750.7701416015625,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.0248,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:46:16Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-063-142.project.json",
+  "place": "roblox/build/Troll_NO-063-142.rbxl"
+ }
+}
