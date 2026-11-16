@@ -73,30 +73,63 @@ def validate_sector(sid: str) -> dict:
     return res
 
 
-# Official heights (Kartverket / Norgeskart, m above sea level, NN2000 where published)
+# Official summit heights (m a.s.l.). Positions: Kartverket Stedsnavn API representation
+# points (EPSG:25833) where noted "SSR"; otherwise converted from published lon/lat.
+# radius = search window for the DEM maximum (representation points are not exact summits).
 LANDMARKS = [
-    ("Galdhøpiggen", 8.3123, 61.6364, 2469),
-    ("Glittertind", 8.5572, 61.6511, 2452),
-    ("Store Skagastølstind", 7.8719, 61.4614, 2405),
-    ("Snøhetta", 9.2733, 62.3197, 2286),
-    ("Store Trolltind (Romsdalen)", 7.7269, 62.4860, 1788),
-    ("Romsdalshornet", 7.7936, 62.4878, 1550),
-    ("Gaustatoppen", 8.6561, 59.8542, 1883),
-    ("Stetind", 16.3414, 68.1650, 1392),
-    ("Preikestolen", 6.1903, 58.9864, 604),
+    ("Galdhøpiggen (SSR)", 146001, 6851889, 2469, 250),
+    ("Glittertind", 159087, 6852208, 2452, 250),
+    ("Store Skagastølstind", 120610, 6834953, 2405, 250),
+    ("Snøhetta, Dovre (SSR)", 203191, 6922976, 2286, 400),
+    ("Store Trolltind, Romsdalen", 126000, 6950000, 1788, 2000),
+    ("Romsdalshornet (SSR)", 128807, 6949681, 1550, 300),
+    ("Gaustatoppen (SSR)", 144572, 6652234, 1883, 400),
+    ("Stetinden, Narvik (SSR)", 566098, 7562126, 1392, 400),
 ]
 
 
-def validate_landmarks(radius_m: int = 250) -> list[dict]:
-    from pyproj import Transformer
-    t = Transformer.from_crs(4326, 25833, always_xy=True)
+def validate_landmarks() -> list[dict]:
     out = []
-    for name, lon, lat, official in LANDMARKS:
-        e, n = t.transform(lon, lat)
-        e, n = round(e), round(n)
+    for name, e, n, official, radius_m in LANDMARKS:
         a = read_dem("MAINLAND", (e - radius_m, n - radius_m, e + radius_m, n + radius_m), 1.0)
         iy, ix = np.unravel_index(int(a.argmax()), a.shape)
         out.append({"name": name, "official_m": official, "dem_max_m": round(float(a.max()), 2),
-                    "diff_m": round(float(a.max()) - official, 2), "sector": sector_at("MAINLAND", e, n).id,
-                    "peak_e": e - radius_m + ix, "peak_n": n + radius_m - iy})
+                    "diff_m": round(float(a.max()) - official, 2), "search_radius_m": radius_m,
+                    "peak_e": int(e - radius_m + ix), "peak_n": int(n + radius_m - iy),
+                    "sector": sector_at("MAINLAND", e - radius_m + ix, n + radius_m - iy).id})
+    return out
+
+
+def validate_neighbours(sid: str) -> list[dict]:
+    """Cross-sector seam test: this sector's halo cells must equal the neighbour's own edge cells
+    (both taken from the ENCODED chunks, i.e. exactly what Roblox will receive)."""
+    w = world()
+    s = parse_id(sid)
+    cm = w["grid"]["chunk_m"]
+    k = s.size // cm
+    out = []
+    mine = load_chunks(sid)
+    for side, nb in s.neighbours().items():
+        if registry.load_meta(nb.id) is None:
+            continue
+        theirs = load_chunks(nb.id)
+        worst = 0
+        cells = 0
+        for i in range(k):
+            if side == "E":
+                a = codec.decode(mine[f"{k - 1:02d}_{i:02d}"])[0][1:-1, -1]
+                b = codec.decode(theirs[f"00_{i:02d}"])[0][1:-1, 1]
+            elif side == "W":
+                a = codec.decode(mine[f"00_{i:02d}"])[0][1:-1, 0]
+                b = codec.decode(theirs[f"{k - 1:02d}_{i:02d}"])[0][1:-1, -2]
+            elif side == "N":
+                a = codec.decode(mine[f"{i:02d}_{k - 1:02d}"])[0][-1, 1:-1]
+                b = codec.decode(theirs[f"{i:02d}_00"])[0][1, 1:-1]
+            else:
+                a = codec.decode(mine[f"{i:02d}_00"])[0][0, 1:-1]
+                b = codec.decode(theirs[f"{i:02d}_{k - 1:02d}"])[0][-2, 1:-1]
+            worst = max(worst, int(np.abs(a - b).max()))
+            cells += a.size
+        out.append({"sector": sid, "side": side, "neighbour": nb.id, "edge_cells": cells,
+                    "max_mismatch_m": round(worst * w["height_encoding"]["step_m"], 3), "pass": worst == 0})
     return out

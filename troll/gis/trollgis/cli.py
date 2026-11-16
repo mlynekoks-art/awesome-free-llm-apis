@@ -5,6 +5,7 @@
   sector <id|E,N> [...]    build + validate + export sectors (skips finished ones)
   batch <n> [--near E,N]   build the next n PENDING sectors (optionally nearest to a point)
   landmarks                compare known summit heights with the DEM
+  rebuild <id> [...]       re-download and re-export finished sectors (keeps status)
   status                   sync the registry and print counts
 """
 from __future__ import annotations
@@ -49,6 +50,19 @@ def main(argv: list[str]) -> None:
         for a in argv[1:]:
             do_sector(_resolve(a))
         print(registry.sync())
+    elif cmd == "rebuild":
+        for a in argv[1:]:
+            s = _resolve(a)
+            old = registry.load_meta(s.id)
+            tiles.build_sector(s, force=True)
+            res = validate.validate_sector(s.id)
+            if res["result"] == "PASS":
+                export_roblox.export_sector(s.id)
+            meta = registry.load_meta(s.id)
+            if old and registry.STATUSES.index(old["status"]) > registry.STATUSES.index(meta["status"]):
+                meta["status"], meta["approval"] = old["status"], old.get("approval", "NOT_SUBMITTED")
+                registry.save_meta(meta)
+            print(s.id, meta["status"], res["result"], flush=True)
     elif cmd == "batch":
         n = int(argv[1])
         rows = [r for r in registry.read_index() if r["status"] == "PENDING"]

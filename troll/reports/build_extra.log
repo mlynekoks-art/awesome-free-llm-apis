@@ -1,0 +1,5 @@
+NO-061-144 EXPORTED validation=PASS elev=-0.22..1136.07 m sea=0.3716 bytes=18357816 (41s)
+NO-061-143 EXPORTED validation=PASS elev=-0.2..1182.98 m sea=0.036 bytes=19584907 (0s)
+NO-134-289 EXPORTED validation=PASS elev=-0.3..796.25 m sea=0.3961 bytes=19040483 (43s)
+NO-066-117 EXPORTED validation=PASS elev=1355.0..2468.54 m sea=0.0 bytes=18403293 (50s)
+{'PENDING': 24211, 'EXPORTED': 12}

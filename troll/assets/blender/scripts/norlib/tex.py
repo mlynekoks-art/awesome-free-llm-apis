@@ -70,8 +70,8 @@ def fbm(shape, feature_px, rng, octaves=4, gain=0.5, stretch=(1.0, 1.0)):
     feature_px: size of the largest features; stretch=(sx, sy) >1 elongates features
     along that axis.  Returns roughly zero-mean, unit-ish std field."""
     h, w = shape
-    fy = np.fft.fftfreq(h)[:, None] / stretch[1]
-    fx = np.fft.fftfreq(w)[None, :] / stretch[0]
+    fy = np.fft.fftfreq(h)[:, None] * stretch[1]
+    fx = np.fft.fftfreq(w)[None, :] * stretch[0]
     f2 = fx * fx + fy * fy
     total = np.zeros(shape, np.float32)
     amp, norm = 1.0, 0.0
@@ -92,7 +92,7 @@ def norm01(a):
     return np.clip((a - lo) / (hi - lo + 1e-8), 0, 1).astype(np.float32)
 
 
-def worley(shape, cells_x, cells_y, rng, jitter=0.9, warp=None):
+def worley(shape, cells_x, cells_y, rng, jitter=0.9, warp=None, aniso=1.0):
     """Tileable worley noise on a jittered grid.  Returns F1, F2 (pixel units) and cell id.
     warp: optional (dx, dy) pixel displacement arrays (must themselves be tileable)."""
     h, w = shape
@@ -114,7 +114,7 @@ def worley(shape, cells_x, cells_y, rng, jitter=0.9, warp=None):
             mx, my = ncx % cells_x, ncy % cells_y
             px = (ncx + 0.5 + jitter * (jx[my, mx] - 0.5)) * cw
             py = (ncy + 0.5 + jitter * (jy[my, mx] - 0.5)) * ch
-            d = np.sqrt((xx - px) ** 2 + (yy - py) ** 2)
+            d = np.sqrt((xx - px) ** 2 + ((yy - py) * aniso) ** 2)
             closer = d < f1
             f2 = np.where(closer, f1, np.minimum(f2, d))
             cid = np.where(closer, my * cells_x + mx, cid)

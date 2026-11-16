@@ -1,0 +1,82 @@
+[
+ {
+  "name": "Galdhøpiggen (SSR)",
+  "official_m": 2469,
+  "dem_max_m": 2468.54,
+  "diff_m": -0.46,
+  "search_radius_m": 250,
+  "peak_e": 145999,
+  "peak_n": 6851890,
+  "sector": "NO-066-117"
+ },
+ {
+  "name": "Glittertind",
+  "official_m": 2452,
+  "dem_max_m": 2451.68,
+  "diff_m": -0.32,
+  "search_radius_m": 250,
+  "peak_e": 159093,
+  "peak_n": 6852238,
+  "sector": "NO-069-118"
+ },
+ {
+  "name": "Store Skagastølstind",
+  "official_m": 2405,
+  "dem_max_m": 2403.77,
+  "diff_m": -1.23,
+  "search_radius_m": 250,
+  "peak_e": 120610,
+  "peak_n": 6834932,
+  "sector": "NO-060-113"
+ },
+ {
+  "name": "Snøhetta, Dovre (SSR)",
+  "official_m": 2286,
+  "dem_max_m": 2287.1,
+  "diff_m": 1.1,
+  "search_radius_m": 400,
+  "peak_e": 203188,
+  "peak_n": 6922984,
+  "sector": "NO-080-135"
+ },
+ {
+  "name": "Store Trolltind, Romsdalen",
+  "official_m": 1788,
+  "dem_max_m": 1788.11,
+  "diff_m": 0.11,
+  "search_radius_m": 2000,
+  "peak_e": 125307,
+  "peak_n": 6949509,
+  "sector": "NO-061-142"
+ },
+ {
+  "name": "Romsdalshornet (SSR)",
+  "official_m": 1550,
+  "dem_max_m": 1549.73,
+  "diff_m": -0.27,
+  "search_radius_m": 300,
+  "peak_e": 128821,
+  "peak_n": 6949671,
+  "sector": "NO-062-142"
+ },
+ {
+  "name": "Gaustatoppen (SSR)",
+  "official_m": 1883,
+  "dem_max_m": 1882.12,
+  "diff_m": -0.88,
+  "search_radius_m": 400,
+  "peak_e": 144571,
+  "peak_n": 6652235,
+  "sector": "NO-066-068"
+ },
+ {
+  "name": "Stetinden, Narvik (SSR)",
+  "official_m": 1392,
+  "dem_max_m": 1391.09,
+  "diff_m": -0.91,
+  "search_radius_m": 400,
+  "peak_e": 566105,
+  "peak_n": 7562107,
+  "sector": "NO-171-295"
+ }
+]

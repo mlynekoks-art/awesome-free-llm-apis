@@ -1,0 +1,82 @@
+{
+ "id": "NO-060-141",
+ "realm": "MAINLAND",
+ "region": "NO-R02-05",
+ "col": 60,
+ "row": 141,
+ "bounds_epsg": 25833,
+ "bounds": [
+  120000,
+  6944000,
+  124000,
+  6948000
+ ],
+ "centre": [
+  122000.0,
+  6946000.0
+ ],
+ "longitude": 7.66295,
+ "latitude": 62.45168,
+ "status": "EXPORTED",
+ "lod": "L2",
+ "elevation": {
+  "min_m": 184.45,
+  "max_m": 1638.45,
+  "mean_m": 949.61,
+  "source_res_m": 1.0
+ },
+ "sea_frac": 0.0,
+ "materials": {
+  "GRASS": 0.3014,
+  "LEAFY_GRASS": 0.082,
+  "GROUND": 0.433,
+  "ROCK": 0.1476,
+  "SLATE": 0.036
+ },
+ "material_source": "interim-dem-derived",
+ "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "roads_buildings": "pending (NVDB / N50)",
+ "bathymetry": "synthetic placeholder",
+ "chunks": {
+  "count": 256,
+  "cells": 250,
+  "halo_cells": 1,
+  "encoded_bytes": 19698148
+ },
+ "sources": [
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+ ],
+ "validation": {
+  "sector": "NO-060-141",
+  "checks": {
+   "codec_roundtrip": {
+    "max_abs_error_m": 0.025,
+    "tolerance_m": 0.0251,
+    "land_cells": 16000000,
+    "pass": true
+   },
+   "chunk_seams": {
+    "max_mismatch_steps": 0,
+    "pass": true
+   },
+   "holes": {
+    "nan": 0,
+    "min_m": 184.4521942138672,
+    "max_m": 1638.4544677734375,
+    "pass": true
+   },
+   "sector_edge_vs_redownload": {
+    "core_max_diff_m": 0.0,
+    "halo_vs_neighbour_cells_max_diff_m": 0.0249,
+    "pass": true
+   }
+  },
+  "result": "PASS"
+ },
+ "approval": "NOT_SUBMITTED",
+ "updated": "2026-11-16T18:16:56Z",
+ "roblox_export": {
+  "project": "roblox/build/NO-060-141.project.json",
+  "place": "roblox/build/Troll_NO-060-141.rbxl"
+ }
+}
