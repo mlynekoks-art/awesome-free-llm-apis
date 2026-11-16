@@ -27,24 +27,158 @@
  },
  "sea_frac": 0.0,
  "materials": {
-  "GRASS": 0.0411,
+  "GRASS": 0.0358,
   "LEAFY_GRASS": 0.0352,
-  "GROUND": 0.6572,
-  "ROCK": 0.2098,
-  "SLATE": 0.0567
+  "GROUND": 0.6285,
+  "ROCK": 0.2088,
+  "SLATE": 0.0566,
+  "GLACIER": 0.0015,
+  "LAKE": 0.0336
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": "Stigbotnvatnet",
+   "vatnlnr": 31471,
+   "status": "OK",
+   "level_m": 982.3,
+   "nve_height_m": 981,
+   "cells_in_window": 85082,
+   "nve_polygon_cells_in_window": 84609
+  },
+  {
+   "name": null,
+   "vatnlnr": 139016,
+   "status": "OK",
+   "level_m": 1326.95,
+   "nve_height_m": 1326,
+   "cells_in_window": 4734,
+   "nve_polygon_cells_in_window": 5994
+  },
+  {
+   "name": null,
+   "vatnlnr": 280323,
+   "status": "OK",
+   "level_m": 1323.1,
+   "nve_height_m": 1323,
+   "cells_in_window": 6344,
+   "nve_polygon_cells_in_window": 7892
+  },
+  {
+   "name": "Kr\u00e5kenesvatna",
+   "vatnlnr": 31485,
+   "status": "OK",
+   "level_m": 1015.75,
+   "nve_height_m": 1015,
+   "cells_in_window": 96630,
+   "nve_polygon_cells_in_window": 93789
+  },
+  {
+   "name": null,
+   "vatnlnr": 31495,
+   "status": "OK",
+   "level_m": 1009.5,
+   "nve_height_m": 1009,
+   "cells_in_window": 54296,
+   "nve_polygon_cells_in_window": 45643
+  },
+  {
+   "name": null,
+   "vatnlnr": 280437,
+   "status": "OK",
+   "level_m": 1326.95,
+   "nve_height_m": 1326,
+   "cells_in_window": 21840,
+   "nve_polygon_cells_in_window": 24245
+  },
+  {
+   "name": "B\u00f8rtj\u00f8nna",
+   "vatnlnr": 31483,
+   "status": "OK",
+   "level_m": 1069.0,
+   "nve_height_m": 1069,
+   "cells_in_window": 91624,
+   "nve_polygon_cells_in_window": 88272
+  },
+  {
+   "name": "N\u00f8rdre Isglupen",
+   "vatnlnr": 31502,
+   "status": "OK",
+   "level_m": 1149.75,
+   "nve_height_m": 1149,
+   "cells_in_window": 11744,
+   "nve_polygon_cells_in_window": 10993
+  },
+  {
+   "name": null,
+   "vatnlnr": 139042,
+   "status": "OK",
+   "level_m": 1024.35,
+   "nve_height_m": 1024,
+   "cells_in_window": 8378,
+   "nve_polygon_cells_in_window": 4025
+  },
+  {
+   "name": null,
+   "vatnlnr": 280326,
+   "status": "OK",
+   "level_m": 1317.45,
+   "nve_height_m": 1317,
+   "cells_in_window": 15811,
+   "nve_polygon_cells_in_window": 16881
+  },
+  {
+   "name": null,
+   "vatnlnr": 31440,
+   "status": "OK",
+   "level_m": 1066.5,
+   "nve_height_m": 1065,
+   "cells_in_window": 62105,
+   "nve_polygon_cells_in_window": 62395
+  },
+  {
+   "name": null,
+   "vatnlnr": 139050,
+   "status": "OK",
+   "level_m": 1018.3,
+   "nve_height_m": 1018,
+   "cells_in_window": 3237,
+   "nve_polygon_cells_in_window": 3219
+  },
+  {
+   "name": null,
+   "vatnlnr": 139048,
+   "status": "OK",
+   "level_m": 1016.6,
+   "nve_height_m": 1016,
+   "cells_in_window": 16135,
+   "nve_polygon_cells_in_window": 14829
+  },
+  {
+   "name": "Kr\u00e5kenesvatna",
+   "vatnlnr": 31481,
+   "status": "OK",
+   "level_m": 1015.2,
+   "nve_height_m": 1019,
+   "cells_in_window": 98758,
+   "nve_polygon_cells_in_window": 97839
+  }
+ ],
+ "lake_frac": 0.0336,
+ "glacier_frac": 0.0015,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 18722574
+  "encoded_bytes": 18982915
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-061-141",
@@ -52,7 +186,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 16000000,
+    "land_cells": 15462502,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -74,7 +213,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:13:20Z",
+ "updated": "2026-11-16T18:37:43Z",
  "roblox_export": {
   "project": "roblox/build/NO-061-141.project.json",
   "place": "roblox/build/Troll_NO-061-141.rbxl"

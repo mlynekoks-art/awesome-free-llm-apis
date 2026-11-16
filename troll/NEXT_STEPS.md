@@ -11,11 +11,11 @@ Zasada: wykonuj od góry; po każdym punkcie aktualizuj `SESSION_CHECKPOINT.md` 
    i widoki w Studio wykonywał agent, a nie człowiek.
 
 ## B. Możliwe w sesji chmurowej (bez Studio)
-1. **Hydrografia**: jeziora (NVE Innsjødatabase) i rzeki (NVE Elvenett / N50) → maska `LAKE`, poziom lustra wody
-   z DTM, kod TRC2 z poziomem wody na kolumnę; test planera dla jezior na różnych wysokościach.
+1. **Rzeki**: NVE Elvenett (osie) + N50 (poligony szerokich rzek) → woda płynąca ze spadkiem; wyjaśnić jeziora
+   `REJECTED_NOT_FLAT`. (Jeziora i lodowce: zrobione.)
 2. **Pokrycie terenu**: NIBIO AR5/AR50 + SR16 (gatunek, wysokość drzewostanu) → materiały terenu i mapy gęstości
    roślinności per sektor; zastąpić klasy tymczasowe (`material_source`).
-3. **Lodowce i śnieg**: NVE Breatlas → `GLACIER`/`SNOW`.
+3. **Śnieg sezonowy**: seNorge (MET/NVE) → pokrywa śnieżna wg pory roku. (Lodowce: zrobione.)
 4. **Drogi, tunele, mosty, kolej**: NVDB + N50 → wektory per sektor (`roads.json`), wyrównanie terenu pod drogą.
 5. **Zabudowa i miejscowości**: N50 / OSM budynki, Stedsnavn → `settlements.json`, obrysy, klasy architektury.
 6. **L1 25 m**: siatki dalekiego terenu per region + tabele horyzontu dla `SunExposure`.

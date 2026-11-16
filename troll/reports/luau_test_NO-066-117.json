@@ -1,0 +1,40 @@
+{
+  "chunks": [
+    {
+      "blocks": 100,
+      "chunk": "05_05",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 4.547473508864641e-13,
+      "decodeSeconds": 0.03477848200009248,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 78,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.167526201000328,
+      "voxelsWritten": 1800000,
+      "waterColumnsWrong": 0,
+      "waterLevelDecodeDiffM": 0,
+      "wetColumns": 0
+    },
+    {
+      "blocks": 100,
+      "chunk": "10_10",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.012982130999716901,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 9,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.040800902000228234,
+      "voxelsWritten": 483750,
+      "waterColumnsWrong": 0,
+      "waterLevelDecodeDiffM": 0,
+      "wetColumns": 0
+    }
+  ],
+  "result": "PASS",
+  "sector": "NO-066-117"
+}

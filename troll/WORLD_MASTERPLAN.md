@@ -65,7 +65,8 @@ czytają te same komórki źródłowe, więc krawędzie zgadzają się co do kwa
 | Wysokości | Kartverket NHM DTM 1 m (WCS) | działa |
 | Granica państwa, fylker | Kartverket Administrative enheter (WFS) | działa |
 | Morze | maska z DTM (h = 0, spójny obszar ≥ 400 m²) | działa; dno syntetyczne |
-| Jeziora, rzeki | NVE Innsjødatabase / Elvenett, N50 | do podłączenia |
+| Jeziora, lodowce | NVE Innsjødatabase, NVE Bre | działa (dno jezior syntetyczne) |
+| Rzeki | NVE Elvenett, N50 | do podłączenia |
 | Pokrycie terenu, lasy | NIBIO AR5 / SR16, N50 | do podłączenia; teraz klasy tymczasowe z wysokości i nachylenia |
 | Drogi, tunele, mosty | Statens vegvesen NVDB | do podłączenia |
 | Zabudowa, miejscowości | N50 / OSM / Stedsnavn | do podłączenia |

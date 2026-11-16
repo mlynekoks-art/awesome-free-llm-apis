@@ -144,7 +144,7 @@ def spruce_spray(rng, pendulous=False):
     fresh = tex.srgb((70, 102, 44))
     _needles(cv, [main] + shoots1 + shoots2, rng, 0.019, 0.0007, 60, 0.0014, greens, 0.75,
              tip_fresh=0.05, fresh_col=fresh, rough=0.5)
-    return cv.finish(normal_strength=0.9, ao=0.5)
+    return cv.finish(normal_strength=0.9, ao=0.35)
 
 
 # ============================================================================ pine
@@ -179,7 +179,7 @@ def pine_spray(rng, dense=False):
     # a few brownish older/dying needles inside the brush
     _needles(cv, [b[: max(2, len(b) // 3)] for b in brushes], rng, 0.042, 0.0008, 55, 0.02,
              np.array([tex.srgb((120, 98, 58)), tex.srgb((98, 90, 60))]), 0.2, rough=0.6, curve=0.05)
-    return cv.finish(normal_strength=0.8, ao=0.5)
+    return cv.finish(normal_strength=0.8, ao=0.35)
 
 
 # ============================================================================ birch

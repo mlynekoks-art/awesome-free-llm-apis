@@ -1,0 +1,40 @@
+{
+  "chunks": [
+    {
+      "blocks": 100,
+      "chunk": "04_04",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.013319449000391614,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 46,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.11423572400008197,
+      "voxelsWritten": 1553125,
+      "waterColumnsWrong": 0,
+      "waterLevelDecodeDiffM": 0,
+      "wetColumns": 0
+    },
+    {
+      "blocks": 100,
+      "chunk": "12_09",
+      "columnHeightMaxErrM": 0,
+      "decodeMaxDiffM": 2.2737367544323206e-13,
+      "decodeSeconds": 0.01841007900020486,
+      "interiorGaps": 0,
+      "materialMismatches": 0,
+      "maxBlockHeightVoxels": 60,
+      "openCliffFaces": 0,
+      "pass": true,
+      "planSeconds": 0.2118425640001078,
+      "voxelsWritten": 2664375,
+      "waterColumnsWrong": 0,
+      "waterLevelDecodeDiffM": 0,
+      "wetColumns": 0
+    }
+  ],
+  "result": "PASS",
+  "sector": "NO-062-142"
+}

@@ -109,6 +109,7 @@ def camera_fit(sc, bmin, bmax, azimuth_deg=-28.0, elevation_deg=6.0, lens=50.0, 
     cam_data = bpy.data.cameras.new("Cam")
     cam_data.lens = lens
     cam_data.sensor_width = 36
+    cam_data.sensor_fit = "HORIZONTAL"
     cam = bpy.data.objects.new("Cam", cam_data)
     sc.collection.objects.link(cam)
     sc.camera = cam

@@ -9,19 +9,44 @@
   },
   "realms": {
     "MAINLAND": {
-      "epsg": 25833, "label": "Norge fastland (ETRS89 / UTM 33N)",
-      "origin_e": -120000, "origin_n": 6380000, "cols": 320, "rows": 408,
-      "dem": {"type": "wcs", "url": "https://wcs.geonorge.no/skwms1/wcs.hoyde-dtm-nhm-25833", "coverage": "nhm_dtm_topo_25833", "native_res_m": 1.0, "max_width": 3840, "max_height": 2160}
+      "epsg": 25833,
+      "label": "Norge fastland (ETRS89 / UTM 33N)",
+      "origin_e": -120000,
+      "origin_n": 6380000,
+      "cols": 320,
+      "rows": 408,
+      "dem": {
+        "type": "wcs",
+        "url": "https://wcs.geonorge.no/skwms1/wcs.hoyde-dtm-nhm-25833",
+        "coverage": "nhm_dtm_topo_25833",
+        "native_res_m": 1.0,
+        "max_width": 3840,
+        "max_height": 2160
+      }
     },
     "SVALBARD": {
-      "epsg": 25833, "label": "Svalbard (ETRS89 / UTM 33N)",
-      "origin_e": 360000, "origin_n": 8440000, "cols": 140, "rows": 140,
-      "dem": {"type": "pending", "note": "Norsk Polarinstitutt S0 Terrengmodell - see GIS_SOURCES.md"}
+      "epsg": 25833,
+      "label": "Svalbard (ETRS89 / UTM 33N)",
+      "origin_e": 360000,
+      "origin_n": 8440000,
+      "cols": 140,
+      "rows": 140,
+      "dem": {
+        "type": "pending",
+        "note": "Norsk Polarinstitutt S0 Terrengmodell - see GIS_SOURCES.md"
+      }
     },
     "JANMAYEN": {
-      "epsg": 25829, "label": "Jan Mayen (ETRS89 / UTM 29N)",
-      "origin_e": 380000, "origin_n": 7840000, "cols": 20, "rows": 20,
-      "dem": {"type": "pending", "note": "Norsk Polarinstitutt - see GIS_SOURCES.md"}
+      "epsg": 25829,
+      "label": "Jan Mayen (ETRS89 / UTM 29N)",
+      "origin_e": 380000,
+      "origin_n": 7840000,
+      "cols": 20,
+      "rows": 20,
+      "dem": {
+        "type": "pending",
+        "note": "Norsk Polarinstitutt - see GIS_SOURCES.md"
+      }
     }
   },
   "grid": {
@@ -29,14 +54,47 @@
     "sector_m": 4000,
     "chunk_m": 250,
     "sector_id_format": "{realm_code}-{col:03d}-{row:03d}",
-    "realm_codes": {"MAINLAND": "NO", "SVALBARD": "SJ", "JANMAYEN": "JM"}
+    "realm_codes": {
+      "MAINLAND": "NO",
+      "SVALBARD": "SJ",
+      "JANMAYEN": "JM"
+    }
   },
   "lod": {
-    "L0": {"name": "country", "res_m": 250, "use": "global model, map, far horizon"},
-    "L1": {"name": "regional", "res_m": 25, "use": "distant terrain meshes around the active sector"},
-    "L2": {"name": "exploration", "res_m": 1, "use": "Roblox voxel terrain, 1 voxel = 1 m"},
-    "L3": {"name": "story", "res_m": 1, "use": "L2 plus hand-built cliff/cave meshes and bespoke assets"}
+    "L0": {
+      "name": "country",
+      "res_m": 250,
+      "use": "global model, map, far horizon"
+    },
+    "L1": {
+      "name": "regional",
+      "res_m": 25,
+      "use": "distant terrain meshes around the active sector"
+    },
+    "L2": {
+      "name": "exploration",
+      "res_m": 1,
+      "use": "Roblox voxel terrain, 1 voxel = 1 m"
+    },
+    "L3": {
+      "name": "story",
+      "res_m": 1,
+      "use": "L2 plus hand-built cliff/cave meshes and bespoke assets"
+    }
   },
-  "height_encoding": {"dtype": "uint16", "offset_m": -200.0, "step_m": 0.05, "nodata": 65535},
-  "sea": {"level_m": 0.0, "placeholder_seabed_m": -12.0, "note": "No bathymetry yet: seabed depth is a placeholder and is flagged synthetic."}
+  "height_encoding": {
+    "dtype": "uint16",
+    "offset_m": -200.0,
+    "step_m": 0.05,
+    "nodata": 65535
+  },
+  "sea": {
+    "level_m": 0.0,
+    "placeholder_seabed_m": -12.0,
+    "note": "No bathymetry yet: seabed depth is a placeholder and is flagged synthetic."
+  },
+  "lake": {
+    "placeholder_max_depth_m": 6.0,
+    "note": "Lake beds are synthetic until depth maps are wired in."
+  }
 }

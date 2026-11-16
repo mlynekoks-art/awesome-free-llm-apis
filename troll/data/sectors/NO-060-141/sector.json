@@ -27,24 +27,95 @@
  },
  "sea_frac": 0.0,
  "materials": {
-  "GRASS": 0.3014,
-  "LEAFY_GRASS": 0.082,
-  "GROUND": 0.433,
-  "ROCK": 0.1476,
-  "SLATE": 0.036
+  "GRASS": 0.2852,
+  "LEAFY_GRASS": 0.0818,
+  "GROUND": 0.3935,
+  "ROCK": 0.1444,
+  "SLATE": 0.0359,
+  "GLACIER": 0.0142,
+  "LAKE": 0.045
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 31506,
+   "status": "OK",
+   "level_m": 840.4,
+   "nve_height_m": null,
+   "cells_in_window": 11498,
+   "nve_polygon_cells_in_window": 11596
+  },
+  {
+   "name": null,
+   "vatnlnr": 139015,
+   "status": "OK",
+   "level_m": 1001.8,
+   "nve_height_m": null,
+   "cells_in_window": 10267,
+   "nve_polygon_cells_in_window": 10055
+  },
+  {
+   "name": null,
+   "vatnlnr": 139053,
+   "status": "OK",
+   "level_m": 879.5,
+   "nve_height_m": null,
+   "cells_in_window": 3474,
+   "nve_polygon_cells_in_window": 2639
+  },
+  {
+   "name": null,
+   "vatnlnr": 265908,
+   "status": "OK",
+   "level_m": 733.9,
+   "nve_height_m": 733,
+   "cells_in_window": 2551,
+   "nve_polygon_cells_in_window": 3078
+  },
+  {
+   "name": null,
+   "vatnlnr": 139055,
+   "status": "OK",
+   "level_m": 777.05,
+   "nve_height_m": null,
+   "cells_in_window": 62,
+   "nve_polygon_cells_in_window": 24
+  },
+  {
+   "name": "Bispevatnet",
+   "vatnlnr": 31461,
+   "status": "OK",
+   "level_m": 999.6,
+   "nve_height_m": 1000,
+   "cells_in_window": 445986,
+   "nve_polygon_cells_in_window": 460095
+  },
+  {
+   "name": "Alnesvatnet",
+   "vatnlnr": 31491,
+   "status": "OK",
+   "level_m": 743.1,
+   "nve_height_m": 744,
+   "cells_in_window": 251377,
+   "nve_polygon_cells_in_window": 275119
+  }
+ ],
+ "lake_frac": 0.045,
+ "glacier_frac": 0.0142,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 19698148
+  "encoded_bytes": 19967524
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-060-141",
@@ -52,7 +123,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 16000000,
+    "land_cells": 15280426,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -74,7 +150,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:16:56Z",
+ "updated": "2026-11-16T18:36:39Z",
  "roblox_export": {
   "project": "roblox/build/NO-060-141.project.json",
   "place": "roblox/build/Troll_NO-060-141.rbxl"

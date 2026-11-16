@@ -27,19 +27,29 @@ def validate_sector(sid: str) -> dict:
         dem = ds.read(1)
     res = {"sector": sid, "checks": {}}
     max_err, dec = 0.0, {}
+    water_bad, lake_err = 0, 0.0
     land_cells = 0
     for name, blob in chunks.items():
-        q, m = codec.decode(blob)
+        q, m, wq = codec.decode(blob)
         dec[name] = (q, m)
+        wet = wq[1:-1, 1:-1] >= 0
+        if wet.any():   # water surface must never be below its bed
+            water_bad += int((wq[1:-1, 1:-1][wet] < q[1:-1, 1:-1][wet]).sum())
+            lk = m[1:-1, 1:-1] == 14
+            if lk.any():   # lake surface level must equal the flat DTM surface
+                srcl = dem[s.size - (int(name[3:]) + 1) * cm: s.size - int(name[3:]) * cm, int(name[:2]) * cm:(int(name[:2]) + 1) * cm][::-1]
+                lake_err = max(lake_err, float(np.abs(codec.dequantise(wq[1:-1, 1:-1][lk]) - srcl[lk]).max()))
         ci, cj = int(name[:2]), int(name[3:])
         src = dem[s.size - (cj + 1) * cm: s.size - cj * cm, ci * cm:(ci + 1) * cm][::-1]
         h = codec.dequantise(q[1:-1, 1:-1])
-        land = m[1:-1, 1:-1] != 13
+        land = (m[1:-1, 1:-1] != 13) & (m[1:-1, 1:-1] != 14)
         land_cells += int(land.sum())
         if land.any():
             max_err = max(max_err, float(np.abs(h - src)[land].max()))
     res["checks"]["codec_roundtrip"] = {"max_abs_error_m": round(max_err, 4), "tolerance_m": step / 2 + 1e-4,
                                         "land_cells": land_cells, "pass": max_err <= step / 2 + 1e-4}
+    res["checks"]["water"] = {"cells_surface_below_bed": water_bad, "lake_level_vs_dtm_max_diff_m": round(lake_err, 3),
+                              "pass": water_bad == 0 and lake_err <= 0.15}
     worst = 0
     for cj in range(k):
         for ci in range(k):
@@ -62,7 +72,7 @@ def validate_sector(sid: str) -> dict:
     halo = codec.dequantise(q[1:-1, -1])[::-1]
     land = np.abs(strip[:cm, 2][-cm:]) > 1e-3
     seg = strip[500 - cm:, 2]  # rows for chunk cj=4 (n0+1000..n0+1250) are the LAST cm rows of the strip
-    land = np.abs(seg) > 1e-3
+    land = (np.abs(seg) > 1e-3) & (dec[f"{k - 1:02d}_{1000 // cm:02d}"][1][1:-1, -1][::-1] < 13)
     d2 = float(np.abs(halo - seg)[land].max()) if land.any() else 0.0
     res["checks"]["sector_edge_vs_redownload"] = {"core_max_diff_m": round(d, 4), "halo_vs_neighbour_cells_max_diff_m": round(d2, 4),
                                                   "pass": d < 1e-3 and d2 <= step / 2 + 1e-4}

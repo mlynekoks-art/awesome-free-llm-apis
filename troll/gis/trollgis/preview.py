@@ -20,7 +20,7 @@ def sector_arrays(sid: str) -> tuple[np.ndarray, np.ndarray]:
     m = np.empty((s.size, s.size), np.uint8)
     for name, blob in load_chunks(sid).items():
         ci, cj = int(name[:2]), int(name[3:])
-        q, mm = codec.decode(blob)
+        q, mm, _ = codec.decode(blob)
         rows = slice(s.size - (cj + 1) * cm, s.size - cj * cm)
         h[rows, ci * cm:(ci + 1) * cm] = codec.dequantise(q[1:-1, 1:-1])[::-1]
         m[rows, ci * cm:(ci + 1) * cm] = mm[1:-1, 1:-1][::-1]

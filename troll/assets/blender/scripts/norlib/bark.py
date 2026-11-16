@@ -81,7 +81,7 @@ def pine_upper(rng):
     f1, f2, cid = _plates(rng, (10, 64), 6, 50, 0.9)
     edge = np.clip((f2 - f1) / 6.0, 0, 1)
     r = _cellrand(cid, rng)
-    base = tex.srgb((192, 108, 60))
+    base = tex.srgb((178, 108, 70))
     pale = tex.srgb((214, 156, 112))
     dark = tex.srgb((150, 78, 44))
     col = _mix(base, pale, np.clip((r - 0.7) * 3, 0, 1) * 0.55)

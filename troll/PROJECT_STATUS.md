@@ -6,7 +6,8 @@
 - Model L0 całej Norwegii kontynentalnej (250 m) z krajowego DTM Kartverket: `reports/L0_norway_overview.png`.
 - Oficjalne granice 15 fylker (Kartverket WFS) → maska państwa.
 - Globalny indeks: **24 223 sektory** z lądem Norwegii, każdy z ID, granicami, fylke, statystyką wysokości, statusem.
-- Pipeline 1 m: pobranie → otoczka → maska morza → klasy terenu → chunki TRC1 → walidacja → moduły Luau → `.rbxl`.
+- Hydrografia: jeziora (NVE Innsjødatabase, 56 w gotowych sektorach) z własnym poziomem lustra, lodowce (NVE Bre).
+- Pipeline 1 m: pobranie → otoczka → morze/jeziora/lodowce → klasy terenu → chunki TRC2 → walidacja → moduły Luau → `.rbxl`.
 - **12 sektorów (192 km²) w statusie EXPORTED**, wszystkie z walidacją PASS:
   Romsdalen 3×3 + Åndalsnes (NO-060…062-141…143, NO-061-144), Reine/Lofoty (NO-134-289), Galdhøpiggen (NO-066-117).
 - Rejestr źródeł GIS z weryfikacją punktów dostępu: `GIS_SOURCES.md`.
@@ -20,7 +21,7 @@
 - Osobne repozytorium: niedostępne z tej sesji; projekt leży w `troll/` na gałęzi roboczej.
 - Kryteria ukończenia Pakietu 0–1 niespełnione: „działa połączenie z instancją Studio” i „rzeczywisty import
   co najmniej jednego obszaru do Studio”. Pozostałe spełnione.
-- Svalbard, Jan Mayen: tylko definicje siatek. Jeziora, rzeki, pokrycie terenu, drogi, zabudowa: niepodłączone.
+- Svalbard, Jan Mayen: tylko definicje siatek. Rzeki, pokrycie terenu (NIBIO), drogi, zabudowa: niepodłączone.
 
 ## Narzędzia
 | Narzędzie | Stan |

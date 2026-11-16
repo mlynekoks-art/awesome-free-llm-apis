@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 import bpy
 import numpy as np
 
-from . import bark, foliage, geo, mats, paths, studio
+from . import bark, foliage, geo, impostor, mats, paths, studio
 from . import export as ex
 
 # Roblox-oriented budgets (total triangles per LOD; bark + foliage MeshParts)
@@ -75,10 +75,33 @@ def outward_dir(p, axis_xy, up_mix=0.6):
     return geo.unit(d)
 
 
+def stratified(cards, n, bins=14):
+    """Pick n cards keeping the vertical distribution of foliage area (so reduced LODs do
+    not lose the crown top), best importance first inside each height band."""
+    if n >= len(cards):
+        return list(cards)
+    fixed = [c for c in cards if c.importance >= 99]
+    rest = [c for c in cards if c.importance < 99]
+    n_rest = max(n - len(fixed), 0)
+    z = np.array([c.base[2] for c in rest])
+    area = np.array([c.length * c.width for c in rest])
+    edges = np.linspace(z.min(), z.max() + 1e-6, bins + 1)
+    band = np.clip(np.searchsorted(edges, z, side="right") - 1, 0, bins - 1)
+    share = np.array([area[band == b].sum() for b in range(bins)])
+    quota = np.floor(share / share.sum() * n_rest).astype(int)
+    while quota.sum() < n_rest:
+        quota[np.argmax(share / share.sum() * n_rest - quota)] += 1
+    out = list(fixed)
+    for b in range(bins):
+        members = [rest[i] for i in np.nonzero(band == b)[0]]   # already importance-sorted
+        out += members[:quota[b]]
+    return out[:n]
+
+
 def build_lod(tree, lod, bark_mat, fol_mat, prefix):
     cfg = LOD_CFG[lod]
     mb = geo.MeshBuilder()
-    bark_budget = cfg["tri_budget"] * cfg["bark_frac"]
+    bark_budget = cfg["tri_budget"] * tree.info.get("bark_frac", {}).get(lod, cfg["bark_frac"])
     # trunk first, then limbs by decreasing radius until the bark share of the budget is used
     order = sorted(tree.tubes, key=lambda t: (t.level > 0, -float(t.radii[0])))
     for t in order:
@@ -104,13 +127,18 @@ def build_lod(tree, lod, bark_mat, fol_mat, prefix):
     scale = 1.0
     if lod > 0 and n > 0:
         scale = min(math.sqrt(len(cards) / n), cfg["max_scale"])
-    keep = cards[:n]
+    keep = stratified(cards, n)
     # LOD0: spend leftover triangles on bending the biggest cards (2 segments = 4 tris)
     extra = (left - 2 * n) // 2 if cfg["card_segs"] > 1 else 0
     fb = geo.MeshBuilder()
     for c in keep:
         u = (0.0, 0.5) if c.variant == 0 else (0.5, 1.0)
         sc_ = 1.0 if c.importance >= 99 else scale     # leader / fixed cards keep their size
+        top = tree.info.get("height")
+        if top and sc_ > 1.0:                          # never let up-scaled cards poke above the tree
+            rise = geo.unit(c.direction)[2] * c.length
+            if rise > 1e-3:
+                sc_ = max(1.0, min(sc_, (top - 0.3 - c.base[2]) / rise))
         segs = 1
         if extra > 0 and c.length > 0.75:
             segs, extra = 2, extra - 1
@@ -195,17 +223,34 @@ def run_species(species, variants, generate):
             record["lods"][lod] = st
             lod_objs[lod] = objs
             print(f"[{var['asset']}] LOD{lod}: {st['tris']} tris, {st['verts']} verts, h={st['height_m']} m")
+        # alternative LOD2: cross-billboard impostor rendered from LOD0
+        for lod in (1, 2):
+            for o in lod_objs[lod]:
+                o.hide_render = True
+        bb, bb_files = impostor.make_billboard(sc, lod_objs[0], paths.tex_dir(species, True),
+                                               f"{var['asset']}_impostor", prefix)
+        st = ex.export_lod([bb], out, f"{var['asset']}_LOD2_billboard")
+        st.update({"texture_px": 512, "textures": bb_files})
+        bmin, bmax = ex.bounds([bb])
+        st["height_m"] = round(float(bmax[2] - bmin[2]), 2)
+        st["width_x_m"] = round(float(bmax[0] - bmin[0]), 2)
+        st["width_y_m"] = round(float(bmax[1] - bmin[1]), 2)
+        record["lods"]["2_billboard"] = st
+        lod_objs[3] = [bb]
+        for lod in (1, 2):
+            for o in lod_objs[lod]:
+                o.hide_render = False
         if opts["render"]:
             # LOD comparison image: LOD0 | LOD1 | LOD2 side by side
             span = max(record["lods"][0]["width_x_m"], record["lods"][0]["width_y_m"]) * 1.05
-            for lod in (1, 2):
+            for lod in (1, 2, 3):
                 for o in lod_objs[lod]:
                     o.location.x += span * lod
             studio.cycles(sc, opts["samples"], (1280, 720))
             l0 = lod_objs[0]
             bmin, bmax = ex.bounds(l0)
             extent = float(max(bmax[0] - bmin[0], bmax[1] - bmin[1]))
-            for lod in (1, 2):
+            for lod in (1, 2, 3):
                 for o in lod_objs[lod]:
                     o.hide_render = True
             hum = studio.human(loc=(bmax[0] + 1.0, bmin[1] + (bmax[1] - bmin[1]) * 0.35, 0))
@@ -215,20 +260,22 @@ def run_species(species, variants, generate):
             H = float(bmax[2])
             close_h = min(H, max(4.0, H * 0.3))
             panels = [
-                dict(bmin=[min(bmin[0], -1), bmin[1], 0], bmax=[bmax[0] + 1.6, bmax[1], bmax[2]],
+                dict(bmin=[bmin[0], bmin[1], 0], bmax=[bmax[0] + 1.6, bmax[1], bmax[2]],
                      azimuth=-20, elevation=4),
-                dict(bmin=[bmin[0] * 0.6, bmin[1] * 0.6, 0], bmax=[bmax[0] + 1.6, bmax[1] * 0.6, close_h],
+                dict(bmin=[bmin[0], bmin[1], 0], bmax=[bmax[0], bmax[1], bmax[2]],
+                     azimuth=70, elevation=4),
+                dict(bmin=[bmin[0] * 0.5, bmin[1] * 0.5, 0], bmax=[bmax[0] + 1.6, bmax[1] * 0.5, close_h],
                      azimuth=25, elevation=10, margin=1.02),
             ]
             studio.render_sheet(sc, panels, os.path.join(ren, f"{var['asset']}.png"))
             record["render_seconds"] = round(time.time() - t1, 1)
             if var.get("lod_render", False):
-                for lod in (1, 2):
+                for lod in (1, 2, 3):
                     for o in lod_objs[lod]:
                         o.hide_render = False
                 for o in studio_objs:
                     o.scale = (3, 3, 1)
-                studio.camera_fit(sc, [bmin[0], bmin[1], 0], [bmax[0] + 2 * span + 1.8, bmax[1], bmax[2]],
+                studio.camera_fit(sc, [bmin[0], bmin[1], 0], [bmax[0] + 3 * span + 1.8, bmax[1], bmax[2]],
                                   azimuth_deg=0, elevation_deg=3, lens=50)
                 studio.render(sc, os.path.join(ren, f"{var['asset']}_lods.png"))
         # small .blend for inspection (kept only if < 20 MB)

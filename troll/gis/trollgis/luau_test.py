@@ -14,9 +14,10 @@ def run(sid: str, names: list[str]) -> int:
     manifest = json.loads((ROOT / "roblox" / "build" / "sectors" / sid / "Manifest.json").read_text())
     cases = []
     for name in names:
-        q, m = codec.decode(chunks[name])
+        q, m, wq = codec.decode(chunks[name])
         cases.append({"name": name, "ci": int(name[:2]), "cj": int(name[3:]), "payload": codec.to_b64(chunks[name]),
-                      "heights": [round(v, 4) for v in codec.dequantise(q).ravel().tolist()], "materials": m.ravel().tolist()})
+                      "heights": [round(v, 4) for v in codec.dequantise(q).ravel().tolist()], "materials": m.ravel().tolist(),
+                      "water": [round(v, 4) if k >= 0 else -9999 for v, k in zip(codec.dequantise(wq).ravel().tolist(), wq.ravel().tolist())]})
     fx = ROOT / "data" / "cache" / f"fixture_{sid}.json"
     fx.parent.mkdir(parents=True, exist_ok=True)
     fx.write_text(json.dumps({"manifest": manifest, "chunks": cases}))

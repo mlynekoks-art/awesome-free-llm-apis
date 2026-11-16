@@ -27,24 +27,73 @@
  },
  "sea_frac": 0.0,
  "materials": {
-  "GRASS": 0.1448,
-  "LEAFY_GRASS": 0.2735,
+  "GRASS": 0.1445,
+  "LEAFY_GRASS": 0.2648,
   "GROUND": 0.3327,
   "ROCK": 0.212,
-  "SLATE": 0.037
+  "SLATE": 0.037,
+  "LAKE": 0.0089
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 141210,
+   "status": "OK",
+   "level_m": 14.75,
+   "nve_height_m": null,
+   "cells_in_window": 2623,
+   "nve_polygon_cells_in_window": 2831
+  },
+  {
+   "name": null,
+   "vatnlnr": 141207,
+   "status": "OK",
+   "level_m": 807.15,
+   "nve_height_m": null,
+   "cells_in_window": 4140,
+   "nve_polygon_cells_in_window": 4284
+  },
+  {
+   "name": null,
+   "vatnlnr": 141211,
+   "status": "REJECTED_NOT_FLAT",
+   "nve_height_m": null
+  },
+  {
+   "name": "S\u00e6tervatna",
+   "vatnlnr": 31379,
+   "status": "OK",
+   "level_m": 586.1,
+   "nve_height_m": 588,
+   "cells_in_window": 78289,
+   "nve_polygon_cells_in_window": 79754
+  },
+  {
+   "name": "Setervatna",
+   "vatnlnr": 31383,
+   "status": "OK",
+   "level_m": 587.45,
+   "nve_height_m": 589,
+   "cells_in_window": 58382,
+   "nve_polygon_cells_in_window": 58266
+  }
+ ],
+ "lake_frac": 0.0089,
+ "glacier_frac": 0.0,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 20040997
+  "encoded_bytes": 20096435
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-060-143",
@@ -52,7 +101,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 16000000,
+    "land_cells": 15857117,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -74,7 +128,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:18:57Z",
+ "updated": "2026-11-16T18:37:11Z",
  "roblox_export": {
   "project": "roblox/build/NO-060-143.project.json",
   "place": "roblox/build/Troll_NO-060-143.rbxl"

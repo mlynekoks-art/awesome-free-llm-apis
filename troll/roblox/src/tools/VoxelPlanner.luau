@@ -5,7 +5,8 @@
 -- Every block is BLOCK x BLOCK columns. Its vertical range runs from 3 voxels
 -- below the lowest column (including the 1-cell ring around the block, so that
 -- neighbouring blocks always overlap vertically and cliffs have no holes) up to
--- the highest column (or sea level when the block contains water).
+-- the highest column or water surface. Water cells carry their own surface level
+-- (sea = 0 m, each lake its own height); their stored height is the bed.
 local TerrainMaterials = require(script.Parent.Parent.TrollShared.TerrainMaterials)
 
 local VoxelPlanner = {}
@@ -27,21 +28,20 @@ export type Block = {
 
 -- chunk: decoded TRC1 chunk; xWestM / nSouthM: sector-local metres of the chunk's SW corner;
 -- voxelsPerMetre: studsPerMetre / voxelStuds (1 for the Troll world).
-function VoxelPlanner.plan(chunk: any, xWestM: number, nSouthM: number, voxelsPerMetre: number, seaLevelM: number): { Block }
+function VoxelPlanner.plan(chunk: any, xWestM: number, nSouthM: number, voxelsPerMetre: number): { Block }
 	local n = chunk.n
 	local cells = n - 2
 	local B = VoxelPlanner.BLOCK
 	assert(voxelsPerMetre == 1, "planner currently assumes 1 voxel per metre cell")
 	assert(cells % B == 0, "chunk size must be a multiple of the block size")
-	local heights, mats = chunk.heights, chunk.materials
+	local heights, mats, waters = chunk.heights, chunk.materials, chunk.water
+	local NO_WATER = -9999
 	local byCode = TerrainMaterials.byCode
 	local blocks: { Block } = {}
-	local seaV = seaLevelM * voxelsPerMetre
 
 	for br = 0, cells / B - 1 do
 		for bc = 0, cells / B - 1 do
 			local lo, hi = math.huge, -math.huge
-			local hasWater = false
 			for r = br * B, br * B + B + 1 do -- includes halo ring (stored index = cell index + 1)
 				local base = r * n
 				for c = bc * B, bc * B + B + 1 do
@@ -54,16 +54,17 @@ function VoxelPlanner.plan(chunk: any, xWestM: number, nSouthM: number, voxelsPe
 						if h > hi then
 							hi = h
 						end
-						if TerrainMaterials.isWater(mats[base + c + 1]) then
-							hasWater = true
+						local wl = waters[base + c + 1]
+						if wl ~= NO_WATER and wl > hi then
+							hi = wl
 						end
 					end
 				end
 			end
 			local minY = math.floor(lo * voxelsPerMetre) - VoxelPlanner.SHELL
-			local maxY = math.floor(hi * voxelsPerMetre) + 1 -- exclusive
-			if hasWater and maxY < seaV then
-				maxY = seaV
+			local maxY = math.ceil(hi * voxelsPerMetre) -- exclusive
+			if maxY <= minY then
+				maxY = minY + 1
 			end
 			local sizeY = maxY - minY
 
@@ -83,7 +84,9 @@ function VoxelPlanner.plan(chunk: any, xWestM: number, nSouthM: number, voxelsPe
 					local hv = heights[i] * voxelsPerMetre
 					local code = mats[i]
 					local surface = byCode[code] or "Ground"
-					local water = TerrainMaterials.isWater(code)
+					local wl = waters[i]
+					local water = wl ~= NO_WATER
+					local wv = wl * voxelsPerMetre
 					for yi = 1, sizeY do
 						local k = minY + yi - 1
 						local occ = hv - k
@@ -93,9 +96,9 @@ function VoxelPlanner.plan(chunk: any, xWestM: number, nSouthM: number, voxelsPe
 						elseif occ > 0 and (not water or occ >= 0.5) then
 							mx[yi][zi] = surface
 							ox[yi][zi] = occ
-						elseif water and k < seaV then
+						elseif water and wv - k > 0 then
 							mx[yi][zi] = TerrainMaterials.WATER
-							ox[yi][zi] = 1
+							ox[yi][zi] = math.min(1, wv - k)
 						end
 					end
 				end

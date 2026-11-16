@@ -1,6 +1,6 @@
 # SECTOR_REGISTRY — rejestr sektorów świata Troll
 
-_Plik generowany automatycznie: `python -m trollgis.report` (2026-11-16 18:24 UTC). Nie edytować ręcznie._
+_Plik generowany automatycznie: `python -m trollgis.report` (2026-11-16 18:42 UTC). Nie edytować ręcznie._
 
 ## Siatka
 

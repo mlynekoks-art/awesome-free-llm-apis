@@ -28,25 +28,41 @@
  "sea_frac": 0.036,
  "materials": {
   "GRASS": 0.0267,
-  "LEAFY_GRASS": 0.5611,
+  "LEAFY_GRASS": 0.561,
   "GROUND": 0.1973,
   "ROCK": 0.1372,
   "SLATE": 0.0257,
   "SAND": 0.016,
-  "SEA": 0.036
+  "SEA": 0.036,
+  "LAKE": 0.0001
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 141210,
+   "status": "OK",
+   "level_m": 14.75,
+   "nve_height_m": null,
+   "cells_in_window": 3111,
+   "nve_polygon_cells_in_window": 3055
+  }
+ ],
+ "lake_frac": 0.0001,
+ "glacier_frac": 0.0,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 19584907
+  "encoded_bytes": 19630766
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-061-143",
@@ -54,7 +70,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 15423625,
+    "land_cells": 15421297,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -76,7 +97,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:15:59Z",
+ "updated": "2026-11-16T18:38:13Z",
  "roblox_export": {
   "project": "roblox/build/NO-061-143.project.json",
   "place": "roblox/build/Troll_NO-061-143.rbxl"

@@ -11,7 +11,7 @@ import numpy as np
 import rasterio
 from rasterio.transform import from_origin
 from scipy import ndimage
-from . import codec, materials, registry
+from . import codec, hydro, materials, registry
 from .config import SECTORS_DIR, world
 from .grid import Sector
 from .wcs import read_dem
@@ -31,8 +31,8 @@ def fetch_with_halo(sector: Sector) -> np.ndarray:
     return full
 
 
-def derive(sector: Sector, full: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """Return (surface heights incl. synthetic seabed, material codes, sea mask) for the halo grid."""
+def derive(sector: Sector, full: np.ndarray):
+    """Return (bed/ground heights, material codes, sea mask, water level (nan = dry), lake info) for the halo grid."""
     w = world()
     sea = np.abs(full) < 1e-3
     # ignore specks: the sea is a large connected zero-height body
@@ -50,7 +50,24 @@ def derive(sector: Sector, full: np.ndarray) -> tuple[np.ndarray, np.ndarray, np
         dist = ndimage.distance_transform_edt(sea)
         depth = np.minimum(-w["sea"]["placeholder_seabed_m"], 0.6 + dist * 0.3)
         h[sea] = -depth[sea]
-    return h, mat, sea
+    water = np.full(full.shape, np.nan)
+    water[sea] = w["sea"]["level_m"]
+    west, north = e0 - HALO, n1 + HALO
+    ice = hydro.glaciers(full.shape, west, north) & ~sea
+    mat[ice] = materials.CODES["GLACIER"]
+    lake_ids, lake_info = hydro.lakes(full, west, north)
+    lake_ids[sea] = 0
+    for i, li in lake_info.items():
+        mask = lake_ids == i
+        if li["status"] != "OK" or not mask.any():
+            continue
+        dist = ndimage.distance_transform_edt(mask)
+        depth = np.minimum(w["lake"]["placeholder_max_depth_m"], 0.4 + dist * 0.25)
+        # per-cell DTM surface as the water level: identical in every sector that sees the lake
+        h[mask] = full[mask] - depth[mask]
+        water[mask] = full[mask]
+        mat[mask] = materials.CODES["LAKE"]
+    return h, mat, sea, water, lake_info
 
 
 def build_sector(sector: Sector, force: bool = False) -> dict:
@@ -62,7 +79,7 @@ def build_sector(sector: Sector, force: bool = False) -> dict:
     out = SECTORS_DIR / sid
     out.mkdir(parents=True, exist_ok=True)
     full = fetch_with_halo(sector)
-    h, mat, sea = derive(sector, full)
+    h, mat, sea, water, lake_info = derive(sector, full)
     core = slice(HALO, -HALO)
     e0, n0, e1, n1 = sector.bounds
     with rasterio.open(out / "dem_1m.tif", "w", driver="GTiff", height=sector.size, width=sector.size, count=1,
@@ -70,6 +87,9 @@ def build_sector(sector: Sector, force: bool = False) -> dict:
                        transform=from_origin(e0, n1, 1, 1), compress="deflate", predictor=3, tiled=True) as ds:
         ds.write(full[core, core], 1)
     q = codec.quantise(h)
+    wq = np.full(h.shape, -1, np.int64)
+    wet = ~np.isnan(water)
+    wq[wet] = codec.quantise(water[wet])
     cm = w["grid"]["chunk_m"]
     k = sector.size // cm
     chunks = {}
@@ -81,7 +101,7 @@ def build_sector(sector: Sector, force: bool = False) -> dict:
             c0 = HALO + ci * cm - 1
             qs = q[r0:r1, c0:c0 + cm + 2][::-1]       # flip so row 0 = south
             ms = mat[r0:r1, c0:c0 + cm + 2][::-1]
-            blob = codec.encode(qs, ms)
+            blob = codec.encode(qs, ms, wq[r0:r1, c0:c0 + cm + 2][::-1])
             chunks[f"{ci:02d}_{cj:02d}"] = blob
             total += len(blob)
     np.save(out / "chunks.npy", np.array([chunks], dtype=object), allow_pickle=True)
@@ -98,10 +118,12 @@ def build_sector(sector: Sector, force: bool = False) -> dict:
                           "mean_m": round(float(hc.mean()), 2), "source_res_m": 1.0},
             "sea_frac": round(float(sea[core, core].mean()), 4),
             "materials": {inv[int(n)]: round(float(c) / hc.size, 4) for n, c in zip(names, counts)},
-            "material_source": "interim-dem-derived", "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
-            "roads_buildings": "pending (NVDB / N50)", "bathymetry": "synthetic placeholder",
+            "material_source": "interim-dem-derived", "hydrography": "sea mask from DTM; lakes from NVE Innsjødatabase seeds refined on the DTM; rivers pending",
+            "lakes": [v for v in lake_info.values()], "lake_frac": round(float((mat[core, core] == materials.CODES["LAKE"]).mean()), 4),
+            "glacier_frac": round(float((mat[core, core] == materials.CODES["GLACIER"]).mean()), 4),
+            "roads_buildings": "pending (NVDB / N50)", "bathymetry": "synthetic placeholder (sea and lakes)",
             "chunks": {"count": k * k, "cells": cm, "halo_cells": 1, "encoded_bytes": total},
-            "sources": ["kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"], "validation": {}, "approval": "NOT_SUBMITTED"}
+            "sources": ["kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)", "nve-innsjodatabase", "nve-bre"], "validation": {}, "approval": "NOT_SUBMITTED"}
     registry.save_meta(meta)
     return meta
 

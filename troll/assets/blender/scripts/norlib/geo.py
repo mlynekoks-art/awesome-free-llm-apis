@@ -136,8 +136,8 @@ class MeshBuilder:
             t = r / segs
             if r > 0:
                 rot_axis = side
-                cur_d = rotate(cur_d, rot_axis, -bend / segs)
-                cur_n = rotate(cur_n, rot_axis, -bend / segs)
+                cur_d = rotate(cur_d, rot_axis, bend / segs)   # positive bend droops towards -normal
+                cur_n = rotate(cur_n, rot_axis, bend / segs)
                 pos = pos + cur_d * step if r == 1 else pos + cur_d * step
             vv = v_range[0] + (v_range[1] - v_range[0]) * t
             for c in range(cols):

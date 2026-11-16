@@ -19,11 +19,11 @@ from norlib.trees import Card, Tree, Tube  # noqa: E402
 
 VARIANTS = [
     dict(asset="spruce_a", label="Spruce_A", seed=11, lod_render=True,
-         params=dict(height=26.0, dbh=0.52, crown_base=0.6, width_ratio=0.135, lean=0.02)),   # open-grown
+         params=dict(height=26.0, dbh=0.52, crown_base=0.6, width_ratio=0.165, lean=0.02)),   # open-grown
     dict(asset="spruce_b", label="Spruce_B", seed=23,
-         params=dict(height=23.0, dbh=0.42, crown_base=4.5, width_ratio=0.115, lean=0.05)),   # forest edge
+         params=dict(height=23.0, dbh=0.42, crown_base=4.5, width_ratio=0.135, lean=0.05)),   # forest edge
     dict(asset="spruce_c", label="Spruce_C", seed=37,
-         params=dict(height=28.0, dbh=0.58, crown_base=2.0, width_ratio=0.12, lean=0.03, sparse=0.25)),
+         params=dict(height=28.0, dbh=0.58, crown_base=2.0, width_ratio=0.15, lean=0.03, sparse=0.25)),
 ]
 
 
@@ -110,7 +110,7 @@ def _branch(t, rng, origin, trunk_r, az, L, rel, inter, axis_xy):
     """One primary branch with its foliage cards."""
     hor = np.array([math.cos(az), math.sin(az), 0.0])
     theta0 = math.radians(np.interp(rel, [0, 0.3, 1], [45, 12, -12]) + rng.normal(0, 6))
-    droop = math.radians(np.interp(rel, [0, 0.3, 1], [5, 25, 50]) * rng.uniform(0.8, 1.2))
+    droop = math.radians(np.interp(rel, [0, 0.3, 1], [5, 20, 42]) * rng.uniform(0.8, 1.2))
     upturn = math.radians(np.interp(rel, [0, 0.3, 1], [0, 25, 55]) * rng.uniform(0.7, 1.2))
     nseg = 6
     pts = [origin + hor * trunk_r * 0.8]
@@ -132,7 +132,7 @@ def _branch(t, rng, origin, trunk_r, az, L, rel, inter, axis_xy):
     cum = np.concatenate([[0], np.cumsum(seglen)])
     total = cum[-1]
     s_card = float(np.clip(0.6 + 0.3 * L, 0.6, 1.5)) * (0.75 if inter else 1.0)
-    start = total * (0.3 if rel > 0.4 else 0.1)
+    start = total * (0.12 if rel > 0.4 else 0.05)
     pos = start
     upv = np.array([0, 0, 1.0])
     while pos < total - 0.15 * s_card:

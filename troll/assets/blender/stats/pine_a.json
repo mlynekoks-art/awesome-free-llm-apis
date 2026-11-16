@@ -1,0 +1,231 @@
+{
+ "asset": "pine_a",
+ "species": "pine",
+ "seed": 101,
+ "params": {
+  "height": 20.0,
+  "dbh": 0.42,
+  "crown_frac": 0.38,
+  "width_ratio": 0.2,
+  "forks": 3,
+  "lean": 0.03
+ },
+ "blender": "4.2.3 LTS",
+ "lods": {
+  "0": {
+   "fbx": "pine_a_LOD0.fbx",
+   "glb": "pine_a_LOD0.glb",
+   "fbx_bytes": 889868,
+   "glb_bytes": 6618328,
+   "meshes": [
+    {
+     "object": "Pine_A_LOD0_Bark",
+     "tris": 2898,
+     "verts": 2131,
+     "render_verts": 2131,
+     "min": [
+      -2.787,
+      -2.657,
+      -0.02
+     ],
+     "max": [
+      3.509,
+      2.98,
+      20.231
+     ],
+     "material": "pine_bark"
+    },
+    {
+     "object": "Pine_A_LOD0_Foliage",
+     "tris": 5184,
+     "verts": 7776,
+     "render_verts": 7776,
+     "min": [
+      -3.419,
+      -3.52,
+      12.11
+     ],
+     "max": [
+      4.254,
+      3.85,
+      20.782
+     ],
+     "material": "pine_foliage"
+    }
+   ],
+   "tris": 8082,
+   "verts": 9907,
+   "render_verts": 9907,
+   "cards_total": 1296,
+   "cards_kept": 1296,
+   "card_scale": 1.0,
+   "texture_px": 1024,
+   "height_m": 20.8,
+   "width_x_m": 7.67,
+   "width_y_m": 7.37
+  },
+  "1": {
+   "fbx": "pine_a_LOD1.fbx",
+   "glb": "pine_a_LOD1.glb",
+   "fbx_bytes": 361292,
+   "glb_bytes": 1969384,
+   "meshes": [
+    {
+     "object": "Pine_A_LOD1_Bark",
+     "tris": 520,
+     "verts": 420,
+     "render_verts": 420,
+     "min": [
+      -2.632,
+      -2.654,
+      -0.02
+     ],
+     "max": [
+      3.508,
+      2.915,
+      20.121
+     ],
+     "material": "pine_bark_mobile"
+    },
+    {
+     "object": "Pine_A_LOD1_Foliage",
+     "tris": 1980,
+     "verts": 3960,
+     "render_verts": 3960,
+     "min": [
+      -3.594,
+      -3.696,
+      12.093
+     ],
+     "max": [
+      4.385,
+      4.024,
+      20.716
+     ],
+     "material": "pine_foliage_mobile"
+    }
+   ],
+   "tris": 2500,
+   "verts": 4380,
+   "render_verts": 4380,
+   "cards_total": 1296,
+   "cards_kept": 990,
+   "card_scale": 1.144,
+   "texture_px": 512,
+   "height_m": 20.74,
+   "width_x_m": 7.98,
+   "width_y_m": 7.72
+  },
+  "2": {
+   "fbx": "pine_a_LOD2.fbx",
+   "glb": "pine_a_LOD2.glb",
+   "fbx_bytes": 90172,
+   "glb_bytes": 1791376,
+   "meshes": [
+    {
+     "object": "Pine_A_LOD2_Bark",
+     "tris": 64,
+     "verts": 50,
+     "render_verts": 50,
+     "min": [
+      -0.298,
+      -0.298,
+      -0.016
+     ],
+     "max": [
+      0.298,
+      0.498,
+      17.135
+     ],
+     "material": "pine_bark_mobile"
+    },
+    {
+     "object": "Pine_A_LOD2_Foliage",
+     "tris": 436,
+     "verts": 872,
+     "render_verts": 872,
+     "min": [
+      -4.991,
+      -4.903,
+      11.945
+     ],
+     "max": [
+      5.301,
+      5.158,
+      20.612
+     ],
+     "material": "pine_foliage_mobile"
+    }
+   ],
+   "tris": 500,
+   "verts": 922,
+   "render_verts": 922,
+   "cards_total": 1296,
+   "cards_kept": 218,
+   "card_scale": 2.438,
+   "texture_px": 512,
+   "height_m": 20.63,
+   "width_x_m": 10.29,
+   "width_y_m": 10.06
+  },
+  "2_billboard": {
+   "fbx": "pine_a_LOD2_billboard.fbx",
+   "glb": "pine_a_LOD2_billboard.glb",
+   "fbx_bytes": 21676,
+   "glb_bytes": 273788,
+   "meshes": [
+    {
+     "object": "Pine_A_LOD2_Billboard",
+     "tris": 4,
+     "verts": 8,
+     "render_verts": 8,
+     "min": [
+      -5.405,
+      -5.405,
+      -0.324
+     ],
+     "max": [
+      5.405,
+      5.405,
+      21.295
+     ],
+     "material": "Pine_A_billboard"
+    }
+   ],
+   "tris": 4,
+   "verts": 8,
+   "render_verts": 8,
+   "texture_px": 512,
+   "textures": {
+    "albedo": "pine_a_impostor_albedo.png",
+    "normal": "pine_a_impostor_normal.png",
+    "rough": "pine_a_impostor_rough.png"
+   },
+   "height_m": 21.62,
+   "width_x_m": 10.81,
+   "width_y_m": 10.81
+  }
+ },
+ "info": {
+  "height": 20.0,
+  "dbh": 0.42,
+  "crown_base": 12.4,
+  "fork_height": 17.13,
+  "bark_transition": 9.94,
+  "crown_radius_max": 4.0,
+  "cards": 1296,
+  "tubes": 99,
+  "bark_frac": {
+   "0": 0.36,
+   "1": 0.32,
+   "2": 0.25
+  }
+ },
+ "textures": {
+  "folder": "textures/pine",
+  "mobile_folder": "textures/pine/mobile"
+ },
+ "render_seconds": 24.7,
+ "blend": "blender/blend/pine_a.blend",
+ "build_seconds": 106.0
+}

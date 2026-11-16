@@ -1,0 +1,223 @@
+{
+ "asset": "spruce_b",
+ "species": "spruce",
+ "seed": 23,
+ "params": {
+  "height": 23.0,
+  "dbh": 0.42,
+  "crown_base": 4.5,
+  "width_ratio": 0.135,
+  "lean": 0.05
+ },
+ "blender": "4.2.3 LTS",
+ "lods": {
+  "0": {
+   "fbx": "spruce_b_LOD0.fbx",
+   "glb": "spruce_b_LOD0.glb",
+   "fbx_bytes": 1136796,
+   "glb_bytes": 8382424,
+   "meshes": [
+    {
+     "object": "Spruce_B_LOD0_Bark",
+     "tris": 2544,
+     "verts": 1657,
+     "render_verts": 1657,
+     "min": [
+      -2.736,
+      -3.092,
+      -0.014
+     ],
+     "max": [
+      2.464,
+      2.2,
+      23.005
+     ],
+     "material": "spruce_bark"
+    },
+    {
+     "object": "Spruce_B_LOD0_Foliage",
+     "tris": 7208,
+     "verts": 11378,
+     "render_verts": 11378,
+     "min": [
+      -3.917,
+      -3.985,
+      2.306
+     ],
+     "max": [
+      3.507,
+      2.915,
+      23.1
+     ],
+     "material": "spruce_foliage"
+    }
+   ],
+   "tris": 9752,
+   "verts": 13035,
+   "render_verts": 13035,
+   "cards_total": 2085,
+   "cards_kept": 2085,
+   "card_scale": 1.0,
+   "texture_px": 1024,
+   "height_m": 23.11,
+   "width_x_m": 7.42,
+   "width_y_m": 6.9
+  },
+  "1": {
+   "fbx": "spruce_b_LOD1.fbx",
+   "glb": "spruce_b_LOD1.glb",
+   "fbx_bytes": 354764,
+   "glb_bytes": 2437196,
+   "meshes": [
+    {
+     "object": "Spruce_B_LOD1_Bark",
+     "tris": 636,
+     "verts": 544,
+     "render_verts": 544,
+     "min": [
+      -2.732,
+      -3.09,
+      -0.014
+     ],
+     "max": [
+      2.461,
+      2.197,
+      23.0
+     ],
+     "material": "spruce_bark_mobile"
+    },
+    {
+     "object": "Spruce_B_LOD1_Foliage",
+     "tris": 1864,
+     "verts": 3728,
+     "render_verts": 3728,
+     "min": [
+      -4.629,
+      -4.696,
+      2.008
+     ],
+     "max": [
+      4.216,
+      3.546,
+      23.1
+     ],
+     "material": "spruce_foliage_mobile"
+    }
+   ],
+   "tris": 2500,
+   "verts": 4272,
+   "render_verts": 4272,
+   "cards_total": 2085,
+   "cards_kept": 932,
+   "card_scale": 1.496,
+   "texture_px": 512,
+   "height_m": 23.11,
+   "width_x_m": 8.84,
+   "width_y_m": 8.24
+  },
+  "2": {
+   "fbx": "spruce_b_LOD2.fbx",
+   "glb": "spruce_b_LOD2.glb",
+   "fbx_bytes": 89708,
+   "glb_bytes": 2263852,
+   "meshes": [
+    {
+     "object": "Spruce_B_LOD2_Bark",
+     "tris": 72,
+     "verts": 55,
+     "render_verts": 55,
+     "min": [
+      -0.458,
+      -1.092,
+      -0.011
+     ],
+     "max": [
+      0.32,
+      0.32,
+      23.0
+     ],
+     "material": "spruce_bark_mobile"
+    },
+    {
+     "object": "Spruce_B_LOD2_Foliage",
+     "tris": 428,
+     "verts": 856,
+     "render_verts": 856,
+     "min": [
+      -5.391,
+      -6.228,
+      1.588
+     ],
+     "max": [
+      5.17,
+      4.998,
+      23.1
+     ],
+     "material": "spruce_foliage_mobile"
+    }
+   ],
+   "tris": 500,
+   "verts": 911,
+   "render_verts": 911,
+   "cards_total": 2085,
+   "cards_kept": 214,
+   "card_scale": 2.6,
+   "texture_px": 512,
+   "height_m": 23.11,
+   "width_x_m": 10.56,
+   "width_y_m": 11.23
+  },
+  "2_billboard": {
+   "fbx": "spruce_b_LOD2_billboard.fbx",
+   "glb": "spruce_b_LOD2_billboard.glb",
+   "fbx_bytes": 21756,
+   "glb_bytes": 425800,
+   "meshes": [
+    {
+     "object": "Spruce_B_LOD2_Billboard",
+     "tris": 4,
+     "verts": 8,
+     "render_verts": 8,
+     "min": [
+      -6.008,
+      -6.008,
+      -0.36
+     ],
+     "max": [
+      6.008,
+      6.008,
+      23.67
+     ],
+     "material": "Spruce_B_billboard"
+    }
+   ],
+   "tris": 4,
+   "verts": 8,
+   "render_verts": 8,
+   "texture_px": 512,
+   "textures": {
+    "albedo": "spruce_b_impostor_albedo.png",
+    "normal": "spruce_b_impostor_normal.png",
+    "rough": "spruce_b_impostor_rough.png"
+   },
+   "height_m": 24.03,
+   "width_x_m": 12.02,
+   "width_y_m": 12.02
+  }
+ },
+ "info": {
+  "height": 23.0,
+  "dbh": 0.42,
+  "crown_base": 4.5,
+  "crown_radius_max": 3.11,
+  "cards": 2085,
+  "tubes": 181
+ },
+ "textures": {
+  "folder": "textures/spruce",
+  "mobile_folder": "textures/spruce/mobile"
+ },
+ "render_seconds": 47.5,
+ "blend": "blender/blend/spruce_b.blend",
+ "build_seconds": 87.2
+}

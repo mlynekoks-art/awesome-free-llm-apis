@@ -28,23 +28,67 @@
  "sea_frac": 0.0,
  "materials": {
   "GRASS": 0.0361,
-  "LEAFY_GRASS": 0.2729,
-  "GROUND": 0.3509,
-  "ROCK": 0.2273,
-  "SLATE": 0.1127
+  "LEAFY_GRASS": 0.2725,
+  "GROUND": 0.3055,
+  "ROCK": 0.2251,
+  "SLATE": 0.1125,
+  "GLACIER": 0.0411,
+  "LAKE": 0.0071
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 139002,
+   "status": "OK",
+   "level_m": 1065.45,
+   "nve_height_m": 1069,
+   "cells_in_window": 15203,
+   "nve_polygon_cells_in_window": 13997
+  },
+  {
+   "name": null,
+   "vatnlnr": 31440,
+   "status": "OK",
+   "level_m": 1066.5,
+   "nve_height_m": 1065,
+   "cells_in_window": 102162,
+   "nve_polygon_cells_in_window": 100568
+  },
+  {
+   "name": null,
+   "vatnlnr": 138987,
+   "status": "OK",
+   "level_m": 27.0,
+   "nve_height_m": 26,
+   "cells_in_window": 3313,
+   "nve_polygon_cells_in_window": 3009
+  },
+  {
+   "name": null,
+   "vatnlnr": 138986,
+   "status": "OK",
+   "level_m": 15.7,
+   "nve_height_m": 15,
+   "cells_in_window": 3125,
+   "nve_polygon_cells_in_window": 6153
+  }
+ ],
+ "lake_frac": 0.0071,
+ "glacier_frac": 0.0411,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 20491963
+  "encoded_bytes": 20520575
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-061-142",
@@ -52,7 +96,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 16000000,
+    "land_cells": 15886269,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -74,7 +123,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:11:25Z",
+ "updated": "2026-11-16T18:38:00Z",
  "roblox_export": {
   "project": "roblox/build/NO-061-142.project.json",
   "place": "roblox/build/Troll_NO-061-142.rbxl"

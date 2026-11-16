@@ -1,9 +1,11 @@
-"""Chunk codec 'TRC1' - compact binary shared with roblox/src/shared/ChunkCodec.luau.
+"""Chunk codec 'TRC2' - compact binary shared with roblox/src/shared/ChunkCodec.luau.
 
 Layout (little endian):
-  magic 'TRC1' | u16 n (cells per side incl. halo) | u16 reserved
+  magic 'TRC2' | u16 n (cells per side incl. halo) | u16 number of water levels L
   heights: per row (south->north), u16 absolute first cell then zig-zag varint deltas west->east
   materials: RLE (u8 code, varint run length), row-major, same order
+  water: L x u16 quantised water-surface levels, then RLE (u8 level index, varint run); index 0 = no water,
+         index i = levels[i-1]. For water cells the HEIGHT is the bed (sea bed / lake bed), not the surface.
 Heights are quantised: q = round((h_m - offset_m) / step_m).
 """
 from __future__ import annotations
@@ -32,11 +34,24 @@ def _varint(out: bytearray, v: int) -> None:
     out.append(v)
 
 
-def encode(q: np.ndarray, mat: np.ndarray) -> bytes:
-    """q, mat: (n, n) arrays, row 0 = SOUTH edge, col 0 = WEST edge."""
+def _rle(out: bytearray, flat: np.ndarray) -> None:
+    cuts = np.flatnonzero(np.diff(flat)) + 1
+    starts = np.concatenate(([0], cuts))
+    lens = np.diff(np.concatenate((starts, [flat.size])))
+    for s, ln in zip(starts.tolist(), lens.tolist()):
+        out.append(int(flat[s]))
+        _varint(out, ln)
+
+
+def encode(q: np.ndarray, mat: np.ndarray, wq: np.ndarray) -> bytes:
+    """q, mat, wq: (n, n) arrays, row 0 = SOUTH edge, col 0 = WEST edge.
+    wq = quantised water surface level per cell, -1 where there is no water."""
     n = q.shape[0]
-    out = bytearray(b"TRC1")
-    out += int(n).to_bytes(2, "little") + b"\0\0"
+    levels = np.unique(wq[wq >= 0])
+    if len(levels) > 255:
+        raise ValueError("more than 255 distinct water levels in one chunk")
+    out = bytearray(b"TRC2")
+    out += int(n).to_bytes(2, "little") + len(levels).to_bytes(2, "little")
     d = np.diff(q, axis=1)
     zz = ((d << 1) ^ (d >> 63)).tolist()
     first = q[:, 0].tolist()
@@ -44,19 +59,19 @@ def encode(q: np.ndarray, mat: np.ndarray) -> bytes:
         out += first[r].to_bytes(2, "little")
         for v in zz[r]:
             _varint(out, v)
-    flat = mat.ravel()
-    cuts = np.flatnonzero(np.diff(flat)) + 1
-    starts = np.concatenate(([0], cuts))
-    lens = np.diff(np.concatenate((starts, [flat.size])))
-    for s, ln in zip(starts.tolist(), lens.tolist()):
-        out.append(int(flat[s]))
-        _varint(out, ln)
+    _rle(out, mat.ravel())
+    for lv in levels.tolist():
+        out += int(lv).to_bytes(2, "little")
+    idx = np.zeros(wq.shape, np.int64)
+    idx[wq >= 0] = np.searchsorted(levels, wq[wq >= 0]) + 1
+    _rle(out, idx.ravel())
     return bytes(out)
 
 
-def decode(blob: bytes) -> tuple[np.ndarray, np.ndarray]:
-    assert blob[:4] == b"TRC1"
+def decode(blob: bytes) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    assert blob[:4] == b"TRC2"
     n = int.from_bytes(blob[4:6], "little")
+    nlev = int.from_bytes(blob[6:8], "little")
     p = 8
     q = np.empty((n, n), np.int64)
 
@@ -84,7 +99,17 @@ def decode(blob: bytes) -> tuple[np.ndarray, np.ndarray]:
         ln = varint()
         mat[i:i + ln] = code
         i += ln
-    return q, mat.reshape(n, n)
+    levels = [-1]
+    for _ in range(nlev):
+        levels.append(int.from_bytes(blob[p:p + 2], "little")); p += 2
+    wq = np.empty(n * n, np.int64)
+    i = 0
+    while i < n * n:
+        code = blob[p]; p += 1
+        ln = varint()
+        wq[i:i + ln] = levels[code]
+        i += ln
+    return q, mat.reshape(n, n), wq.reshape(n, n)
 
 
 def to_b64(blob: bytes) -> str:

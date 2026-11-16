@@ -71,7 +71,7 @@ function TerrainImporter.importSector(sectorId: string, options: Options?): { ch
 		end
 		local chunk = ChunkCodec.decode(require(module :: ModuleScript) :: string, manifest.heightOffset, manifest.heightStep)
 		local xWest, nSouth = SectorGrid.chunkOriginMetres(manifest, ciN, cjN)
-		for i, block in VoxelPlanner.plan(chunk, xWest, nSouth, voxelsPerMetre, WorldConfig.sea.level_m) do
+		for i, block in VoxelPlanner.plan(chunk, xWest, nSouth, voxelsPerMetre) do
 			local min = Vector3.new(block.minX, block.minY, block.minZ) * VOXEL
 			local size = Vector3.new(block.sizeX, block.sizeY, block.sizeZ) * VOXEL
 			terrain:WriteVoxels(Region3.new(min, min + size), VOXEL, materialGrid(block.materials), block.occupancy)
@@ -117,7 +117,7 @@ function TerrainImporter.verifyChunk(sectorId: string, ci: number, cj: number, s
 	for _ = 1, samples or 200 do
 		local c, r = rng:NextInteger(1, cells), rng:NextInteger(1, cells)
 		local h = chunk.heights[r * chunk.n + c + 1]
-		if h > 0 then
+		if chunk.water[r * chunk.n + c + 1] == ChunkCodec.NO_WATER then
 			local x = (xWest + c - 0.5) * manifest.studsPerMetre
 			local z = -(nSouth + r - 0.5) * manifest.studsPerMetre
 			local hit = workspace:Raycast(Vector3.new(x, (h + 60) * manifest.studsPerMetre, z), Vector3.new(0, -400 * manifest.studsPerMetre, 0))

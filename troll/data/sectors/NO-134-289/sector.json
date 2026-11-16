@@ -27,26 +27,78 @@
  },
  "sea_frac": 0.3961,
  "materials": {
-  "GRASS": 0.0452,
-  "LEAFY_GRASS": 0.2194,
+  "GRASS": 0.045,
+  "LEAFY_GRASS": 0.1871,
   "GROUND": 0.1294,
   "ROCK": 0.1486,
   "SLATE": 0.0586,
   "SAND": 0.0026,
-  "SEA": 0.3961
+  "SEA": 0.3961,
+  "LAKE": 0.0325
  },
  "material_source": "interim-dem-derived",
- "hydrography": "sea mask from DTM only (lakes/rivers pending NVE/N50)",
+ "hydrography": "sea mask from DTM; lakes from NVE Innsj\u00f8database seeds refined on the DTM; rivers pending",
+ "lakes": [
+  {
+   "name": null,
+   "vatnlnr": 88165,
+   "status": "OK",
+   "level_m": 405.9,
+   "nve_height_m": null,
+   "cells_in_window": 4228,
+   "nve_polygon_cells_in_window": 3743
+  },
+  {
+   "name": null,
+   "vatnlnr": 88164,
+   "status": "OK",
+   "level_m": 3.6,
+   "nve_height_m": null,
+   "cells_in_window": 4861,
+   "nve_polygon_cells_in_window": 4342
+  },
+  {
+   "name": "Austerdalsvatnet",
+   "vatnlnr": 45476,
+   "status": "OK",
+   "level_m": 228.0,
+   "nve_height_m": 229,
+   "cells_in_window": 113539,
+   "nve_polygon_cells_in_window": 115896
+  },
+  {
+   "name": "Reinevatnet",
+   "vatnlnr": 45471,
+   "status": "OK",
+   "level_m": 65.95,
+   "nve_height_m": 67,
+   "cells_in_window": 90956,
+   "nve_polygon_cells_in_window": 165465
+  },
+  {
+   "name": "Tennesvatnet",
+   "vatnlnr": 1215,
+   "status": "OK",
+   "level_m": 234.15,
+   "nve_height_m": 239,
+   "cells_in_window": 357953,
+   "nve_polygon_cells_in_window": 363383
+  }
+ ],
+ "lake_frac": 0.0325,
+ "glacier_frac": 0.0,
  "roads_buildings": "pending (NVDB / N50)",
- "bathymetry": "synthetic placeholder",
+ "bathymetry": "synthetic placeholder (sea and lakes)",
  "chunks": {
   "count": 256,
   "cells": 250,
   "halo_cells": 1,
-  "encoded_bytes": 19040483
+  "encoded_bytes": 19336372
  },
  "sources": [
-  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)"
+  "kartverket-nhm-dtm-1m (WCS nhm_dtm_topo_25833)",
+  "nve-innsjodatabase",
+  "nve-bre"
  ],
  "validation": {
   "sector": "NO-134-289",
@@ -54,7 +106,12 @@
    "codec_roundtrip": {
     "max_abs_error_m": 0.025,
     "tolerance_m": 0.0251,
-    "land_cells": 9661849,
+    "land_cells": 9141806,
+    "pass": true
+   },
+   "water": {
+    "cells_surface_below_bed": 0,
+    "lake_level_vs_dtm_max_diff_m": 0.025,
     "pass": true
    },
    "chunk_seams": {
@@ -76,7 +133,7 @@
   "result": "PASS"
  },
  "approval": "NOT_SUBMITTED",
- "updated": "2026-11-16T18:21:17Z",
+ "updated": "2026-11-16T18:40:00Z",
  "roblox_export": {
   "project": "roblox/build/NO-134-289.project.json",
   "place": "roblox/build/Troll_NO-134-289.rbxl"
